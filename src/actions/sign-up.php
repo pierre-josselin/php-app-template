@@ -43,7 +43,6 @@ while(true) {
     $emailAuthenticationMethodManager->create($emailAuthenticationMethod);
     
     $_SESSION["id"] = $account["_id"];
-    
     $location = "/";
     $alert = [
         "type" => "success",

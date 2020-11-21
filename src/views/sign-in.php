@@ -5,6 +5,10 @@
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
             <?php require("{$root}/views/alerts.php"); ?>
+            <?php if(isset(Configuration::AUTHENTICATION_METHODS["facebook"])): ?>
+                <a href="<?= htmlspecialchars($facebookLoginUrl) ?>" class="btn btn-facebook w-100 mb-3">Continuer avec Facebook</a>
+            <?php endif; ?>
+            <hr>
             <form action="/actions/sign-in" method="post">
                 <div class="form-group">
                     <label for="email">Adresse e-mail</label>

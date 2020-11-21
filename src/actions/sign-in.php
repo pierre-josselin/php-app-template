@@ -44,7 +44,6 @@ while(true) {
     }
     
     $_SESSION["id"] = $account["_id"];
-    
     $location = "/";
     $alert = false;
     break;
