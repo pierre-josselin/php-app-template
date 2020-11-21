@@ -8,13 +8,13 @@ $alert = [
 ];
 
 while(true) {
-    if(!isset(Configuration::AUTHENTICATION_METHODS["keyrock"])) break;
+    if(!isset($oauthAuthenticationMethods["keyrock"])) break;
     if($_SERVER["REQUEST_METHOD"] !== "GET") break;
     if(!isset($_GET["token"])) break;
     if(!is_string($_GET["token"])) break;
     if(!$_GET["token"]) break;
     
-    $url = Configuration::AUTHENTICATION_METHODS["keyrock"]["url"];
+    $url = $oauthAuthenticationMethods["keyrock"]["url"];
     $url .= "/user?access_token={$_GET["token"]}";
     $data = json_decode(Utils::request($url), true);
     

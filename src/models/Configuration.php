@@ -17,7 +17,7 @@ class Configuration {
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
     ];
-    const AUTHENTICATION_METHODS = [
+    const OAUTH_AUTHENTICATION_METHODS = [
         "facebook" => [
             "appId" => "403923844314676",
             "appSecret" => "001b310c4aaa5aff06c1ec5dd9acfe71",

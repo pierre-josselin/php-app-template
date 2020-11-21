@@ -14,25 +14,27 @@ ini_set("display_errors", Configuration::DEBUG);
 date_default_timezone_set(Configuration::TIMEZONE);
 require_once("/var/www/vendor/autoload.php");
 
-if(isset(Configuration::AUTHENTICATION_METHODS["facebook"])) {
+$oauthAuthenticationMethods = Configuration::OAUTH_AUTHENTICATION_METHODS;
+
+if(isset($oauthAuthenticationMethods["facebook"])) {
     $facebook = new Facebook\Facebook([
-        "app_id" => Configuration::AUTHENTICATION_METHODS["facebook"]["appId"],
-        "app_secret" => Configuration::AUTHENTICATION_METHODS["facebook"]["appSecret"],
-        "default_graph_version" => Configuration::AUTHENTICATION_METHODS["facebook"]["graphVersion"]
+        "app_id" => $oauthAuthenticationMethods["facebook"]["appId"],
+        "app_secret" => $oauthAuthenticationMethods["facebook"]["appSecret"],
+        "default_graph_version" => $oauthAuthenticationMethods["facebook"]["graphVersion"]
     ]);
     $facebookRedirectLoginHelper = $facebook->getRedirectLoginHelper();
-    $facebookLoginUrl = $facebookRedirectLoginHelper->getLoginUrl(
-        Configuration::AUTHENTICATION_METHODS["facebook"]["redirectUri"],
+    $oauthAuthenticationMethods["facebook"]["signInUrl"] = $facebookRedirectLoginHelper->getLoginUrl(
+        $oauthAuthenticationMethods["facebook"]["redirectUri"],
         ["email"]
     );
 }
 
-if(isset(Configuration::AUTHENTICATION_METHODS["keyrock"])) {
-    $keyrockLoginUrl = Configuration::AUTHENTICATION_METHODS["keyrock"]["url"];
-    $keyrockLoginUrl .= "/oauth2/authorize?response_type=token";
-    $keyrockLoginUrl .= "&client_id=" . Configuration::AUTHENTICATION_METHODS["keyrock"]["appId"];
-    $keyrockLoginUrl .= "&redirect_uri=" . Configuration::AUTHENTICATION_METHODS["keyrock"]["redirectUri"];
-    $keyrockLoginUrl .= "&state=false";
+if(isset($oauthAuthenticationMethods["keyrock"])) {
+    $oauthAuthenticationMethods["keyrock"]["signInUrl"] = $oauthAuthenticationMethods["keyrock"]["url"];
+    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "/oauth2/authorize?response_type=token";
+    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&client_id=" . $oauthAuthenticationMethods["keyrock"]["appId"];
+    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&redirect_uri=" . $oauthAuthenticationMethods["keyrock"]["redirectUri"];
+    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&state=false";
 }
 
 $database = (new MongoDB\Client())->database;

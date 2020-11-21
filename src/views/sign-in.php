@@ -5,13 +5,13 @@
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
             <?php require("{$root}/views/alerts.php"); ?>
-            <?php if(isset(Configuration::AUTHENTICATION_METHODS["facebook"])): ?>
-                <a href="<?= htmlspecialchars($facebookLoginUrl) ?>" class="btn btn-facebook w-100 mb-3">Continuer avec Facebook</a>
+            <?php if($oauthAuthenticationMethods): ?>
+                <?php foreach(array_keys($oauthAuthenticationMethods) as $index => $key): ?>
+                    <a href="<?= htmlspecialchars($oauthAuthenticationMethods[$key]["signInUrl"]) ?>" class="btn btn-<?= $key ?> w-100
+                    <?php if($index < count($oauthAuthenticationMethods) - 1) echo "mb-3"; ?>">Continuer avec <?= ucfirst($key) ?></a>
+                <?php endforeach; ?>
+                <hr>
             <?php endif; ?>
-            <?php if(isset(Configuration::AUTHENTICATION_METHODS["keyrock"])): ?>
-                <a href="<?= htmlspecialchars($keyrockLoginUrl) ?>" class="btn btn-keyrock w-100 mb-3">Continuer avec Keyrock</a>
-            <?php endif; ?>
-            <hr>
             <form action="/actions/sign-in" method="post">
                 <div class="form-group">
                     <label for="email">Adresse e-mail</label>
