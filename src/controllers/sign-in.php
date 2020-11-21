@@ -1,3 +1,3 @@
 <?php
 Authorization::mustNotBeSignedIn();
-require("{$root}/views/sign-up.php");
+require("{$root}/views/sign-in.php");

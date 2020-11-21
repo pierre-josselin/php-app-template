@@ -15,10 +15,26 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbar" class="collapse navbar-collapse">
-                <div class="ml-auto">
-                    <a href="/sign-in" class="btn btn-sm btn<?php if(constant("PATH") != "/sign-in") echo "-outline"; ?>-light">connexion</a>
-                    <a href="/sign-up" class="btn btn-sm btn<?php if(constant("PATH") != "/sign-up") echo "-outline"; ?>-light ml-3">inscription</a>
-                </div>
+                <?php if(isset($_SESSION["id"])): ?>
+                    <ul class="navbar-nav mr-auto">
+                        <?php foreach(Configuration::NAVIGATION as $path => $name): ?>
+                            <li class="nav-item <?php if(constant("PATH") === $path) echo "active"; ?>">
+                                <a href="<?= $path ?>" class="nav-link"><?= $name ?></a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <a class="text-light mr-3" href="/settings">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                    <a class="text-light" href="/actions/sign-out">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                <?php else: ?>
+                    <div class="ml-auto">
+                        <a href="/sign-in" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-in") echo "-outline"; ?>-light">connexion</a>
+                        <a href="/sign-up" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-up") echo "-outline"; ?>-light ml-3">inscription</a>
+                    </div>
+                <?php endif; ?>
             </div>
         </nav>
         <?= $content ?>
