@@ -8,6 +8,9 @@
             <?php if(isset(Configuration::AUTHENTICATION_METHODS["facebook"])): ?>
                 <a href="<?= htmlspecialchars($facebookLoginUrl) ?>" class="btn btn-facebook w-100 mb-3">Continuer avec Facebook</a>
             <?php endif; ?>
+            <?php if(isset(Configuration::AUTHENTICATION_METHODS["keyrock"])): ?>
+                <a href="<?= htmlspecialchars($keyrockLoginUrl) ?>" class="btn btn-keyrock w-100 mb-3">Continuer avec Keyrock</a>
+            <?php endif; ?>
             <hr>
             <form action="/actions/sign-in" method="post">
                 <div class="form-group">

@@ -27,6 +27,14 @@ if(isset(Configuration::AUTHENTICATION_METHODS["facebook"])) {
     );
 }
 
+if(isset(Configuration::AUTHENTICATION_METHODS["keyrock"])) {
+    $keyrockLoginUrl = Configuration::AUTHENTICATION_METHODS["keyrock"]["url"];
+    $keyrockLoginUrl .= "/oauth2/authorize?response_type=token";
+    $keyrockLoginUrl .= "&client_id=" . Configuration::AUTHENTICATION_METHODS["keyrock"]["appId"];
+    $keyrockLoginUrl .= "&redirect_uri=" . Configuration::AUTHENTICATION_METHODS["keyrock"]["redirectUri"];
+    $keyrockLoginUrl .= "&state=false";
+}
+
 $database = (new MongoDB\Client())->database;
 
 if(!isset($_SESSION["alerts"])) {

@@ -15,3 +15,13 @@ body {
     color: white;
     background-color: #2b4a88;
 }
+
+.btn-keyrock {
+    color: white;
+    background-color: #fbba16;
+}
+
+.btn-keyrock:hover {
+    color: white;
+    background-color: #e2a407;
+}

@@ -15,6 +15,7 @@ class Configuration {
         "/actions/sign-in" => "/actions/sign-in.php",
         "/actions/sign-out" => "/actions/sign-out.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
+        "/callbacks/keyrock" => "/callbacks/keyrock.php",
     ];
     const AUTHENTICATION_METHODS = [
         "facebook" => [
@@ -22,6 +23,11 @@ class Configuration {
             "appSecret" => "001b310c4aaa5aff06c1ec5dd9acfe71",
             "redirectUri" => "https://test.pierrejosselin.com/callbacks/facebook",
             "graphVersion" => "v8.0"
+        ],
+        "keyrock" => [
+            "url" => "http://34.91.232.139:3000",
+            "appId" => "5850525f-86e0-4da5-87ec-5ddedfd8ce7b",
+            "redirectUri" => "https://test.pierrejosselin.com/callbacks/keyrock"
         ]
     ];
 }
