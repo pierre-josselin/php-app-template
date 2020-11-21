@@ -4,7 +4,8 @@
     <div class="card">
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
-            <div>Hello world !</div>
+            <?php require("{$root}/views/alerts.php"); ?>
+            Hello world !
         </div>
     </div>
 </div>

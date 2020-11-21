@@ -1,6 +1,8 @@
 <?php
 $root = "/var/www/test.pierrejosselin.com";
 
+session_start();
+
 require_once("/var/www/vendor/autoload.php");
 
 spl_autoload_register(function($class) {
@@ -10,8 +12,13 @@ spl_autoload_register(function($class) {
     require_once($path);
 });
 
+if(!isset($_SESSION["alerts"])) {
+    $_SESSION["alerts"] = [];
+}
+
 $routes = [
-    "/" => "{$root}/controllers/home.php"
+    "/" => "{$root}/controllers/home.php",
+    "/sign-up" => "{$root}/controllers/sign-up.php"
 ];
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));

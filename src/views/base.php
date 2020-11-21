@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="/libraries/bootswatch/4.5.3/<?= Configuration::STYLE ?>/bootstrap.min.css">
         <link rel="stylesheet" href="/libraries/fontawesome/5.15.1/css/all.min.css">
+        <link rel="stylesheet" href="/css/global.css">
         <title><?= $title ?> | <?= Configuration::BRAND ?></title>
     </head>
     <body>
