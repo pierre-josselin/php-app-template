@@ -40,3 +40,15 @@ sudo ./install.sh
 ## Release history
 
 - [1.0.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.0.0)
+
+## Model
+
+![](https://i.imgur.com/uaySlrg.png)
+
+## Screenshots
+
+![](https://i.imgur.com/O4GXGFT.png)
+
+![](https://i.imgur.com/HrPCWne.png)
+
+![](https://i.imgur.com/sJpfPrL.png)
