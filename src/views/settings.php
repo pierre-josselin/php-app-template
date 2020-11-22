@@ -43,6 +43,28 @@
                                 <label>Date de naissance</label>
                                 <input name="birth-date" value="<?= $settingsAccount["birthDate"] ?>" type="date" min="1900-01-01" max="<?= date("Y-m-d") ?>" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label>Adresse</label>
+                                <input name="street" value="<?= $settingsAccount["address"]["street"] ?>" type="text" class="form-control">
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Code postal</label>
+                                        <input name="postal-code" value="<?= $settingsAccount["address"]["postalCode"] ?>" type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label>Ville</label>
+                                        <input name="city" value="<?= $settingsAccount["address"]["city"] ?>" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Pays</label>
+                                <input name="country" value="<?= $settingsAccount["address"]["country"] ?>" type="text" class="form-control">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -134,7 +156,14 @@
                                 <dt class="col-lg-3">Numéro de téléphone</dt>
                                 <dd class="col-lg-9 text-monospace mb-3"><?= ($settingsAccount["phone"] ? htmlentities($settingsAccount["phone"]) : "-") ?></dd>
                                 <dt class="col-lg-3">Date de naissance</dt>
-                                <dd class="col-lg-9 text-monospace"><?= ($settingsAccount["birthDate"] ? date("d/m/Y", strtotime($settingsAccount["birthDate"])) : "-") ?></dd>
+                                <dd class="col-lg-9 text-monospace mb-3"><?= ($settingsAccount["birthDate"] ? date("d/m/Y", strtotime($settingsAccount["birthDate"])) : "-") ?></dd>
+                                <dt class="col-lg-3">Adresse</dt>
+                                <dd class="col-lg-9 text-monospace">
+                                    <?= $settingsAccount["address"]["street"] ?>
+                                    <?= $settingsAccount["address"]["postalCode"] ?>
+                                    <?= $settingsAccount["address"]["city"] ?>
+                                    <?= $settingsAccount["address"]["country"] ?>
+                                </dd>
                             </dl>
                             <a href="javascript: settings.deleteAccount();" class="text-danger mt-4">supprimer le compte</a>
                         </div>

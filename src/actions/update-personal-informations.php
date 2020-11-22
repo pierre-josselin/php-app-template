@@ -15,12 +15,18 @@ while(true) {
     if(!isset($_POST["email"])) break;
     if(!isset($_POST["phone"])) break;
     if(!isset($_POST["birth-date"])) break;
+    if(!isset($_POST["street"])) break;
+    if(!isset($_POST["postal-code"])) break;
+    if(!isset($_POST["city"])) break;
     if(!is_string($_POST["first-name"])) break;
     if(!is_string($_POST["last-name"])) break;
     if(!is_string($_POST["gender"])) break;
     if(!is_string($_POST["email"])) break;
     if(!is_string($_POST["phone"])) break;
     if(!is_string($_POST["birth-date"])) break;
+    if(!is_string($_POST["street"])) break;
+    if(!is_string($_POST["postal-code"])) break;
+    if(!is_string($_POST["city"])) break;
     
     if($_POST["gender"] !== "") {
         if(!in_array($_POST["gender"], ["male", "female"])) {
@@ -46,6 +52,12 @@ while(true) {
     $account["email"] = $_POST["email"];
     $account["phone"] = $_POST["phone"];
     $account["birthDate"] = $_POST["birth-date"];
+    $account["address"] = [
+        "street" => $_POST["street"],
+        "postalCode" => $_POST["postal-code"],
+        "city" => $_POST["city"],
+        "country" => $_POST["country"]
+    ];
     $accountManager->update($account);
     
     $alert = [

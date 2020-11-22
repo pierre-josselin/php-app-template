@@ -25,10 +25,8 @@
                     </ul>
                     <span class="text-light mr-4">
                         <?php
-                            if($currentAccount["firstName"] && $currentAccount["lastName"]) {
-                                echo htmlentities(implode(" ", [$currentAccount["firstName"], $currentAccount["lastName"]]));
-                            } elseif($currentAccount["firstName"]) {
-                                echo htmlentities($currentAccount["firstName"]);
+                            if($currentAccount["firstName"] || $currentAccount["lastName"]) {
+                                echo htmlentities("{$currentAccount["firstName"]} {$currentAccount["lastName"]}");
                             } elseif($currentAccount["email"]) {
                                 echo htmlentities($currentAccount["email"]);
                             }
