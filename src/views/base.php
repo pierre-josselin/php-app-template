@@ -38,5 +38,6 @@
         <script src="/libraries/bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
         <script src="/libraries/bootbox/5.4.0/bootbox.all.min.js"></script>
         <script src="/js/utils.js"></script>
+        <script src="/js/global.js"></script>
     </body>
 </html>
