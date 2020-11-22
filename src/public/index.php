@@ -9,7 +9,7 @@ spl_autoload_register(function($class) {
     require_once($path);
 });
 
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", Configuration::DEBUG);
 date_default_timezone_set(Configuration::TIMEZONE);
 require_once("/var/www/vendor/autoload.php");

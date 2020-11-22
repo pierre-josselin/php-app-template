@@ -9,11 +9,13 @@ class Configuration {
     ];
     const ROUTES = [
         "/" => "/controllers/home.php",
+        "/settings" => "/controllers/settings.php",
         "/sign-up" => "/controllers/sign-up.php",
         "/sign-in" => "/controllers/sign-in.php",
         "/actions/sign-up" => "/actions/sign-up.php",
         "/actions/sign-in" => "/actions/sign-in.php",
         "/actions/sign-out" => "/actions/sign-out.php",
+        "/actions/account/update" => "/actions/account/update.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
     ];
