@@ -12,7 +12,7 @@ spl_autoload_register(function($class) {
 error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", Configuration::DEBUG);
 date_default_timezone_set(Configuration::TIMEZONE);
-require_once("/var/www/vendor/autoload.php");
+require_once("{$root}/vendor/autoload.php");
 
 if(!is_dir("{$root}/files")) {
     mkdir("{$root}/files");
