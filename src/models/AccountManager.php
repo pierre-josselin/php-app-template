@@ -20,4 +20,14 @@ class AccountManager {
             ["\$set" => $account]
         );
     }
+    
+    public function delete(array $query, bool $multiple = false) {
+        global $database;
+        $collection = $database->accounts;
+        if($multiple) {
+            return $collection->deleteMany($query);
+        } else {
+            return $collection->deleteOne($query);
+        }
+    }
 }

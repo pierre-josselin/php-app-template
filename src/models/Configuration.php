@@ -15,7 +15,11 @@ class Configuration {
         "/actions/sign-up" => "/actions/sign-up.php",
         "/actions/sign-in" => "/actions/sign-in.php",
         "/actions/sign-out" => "/actions/sign-out.php",
-        "/actions/account/update" => "/actions/account/update.php",
+        "/actions/unlink-oauth" => "/actions/unlink-oauth.php",
+        "/actions/update-email" => "/actions/update-email.php",
+        "/actions/update-password" => "/actions/update-password.php",
+        "/actions/update-personal-informations" => "/actions/update-personal-informations.php",
+        "/actions/delete-account" => "/actions/delete-account.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
     ];

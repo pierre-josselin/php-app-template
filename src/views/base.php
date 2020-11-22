@@ -37,5 +37,6 @@
         <script src="/libraries/jquery/3.5.1/jquery.min.js"></script>
         <script src="/libraries/bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
         <script src="/libraries/bootbox/5.4.0/bootbox.all.min.js"></script>
+        <script src="/js/utils.js"></script>
     </body>
 </html>

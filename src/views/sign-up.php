@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password-confirmation">Confirmation du mot de passe</label>
-                    <input id="password-confirmation" type="password" minlength="6" maxlength="128" class="form-control" onchange="checkPasswordConfirmation(this);" required>
+                    <input id="password-confirmation" type="password" minlength="6" maxlength="128" class="form-control" onchange="utils.checkPasswordConfirmation(this);" required>
                 </div>
                 <div class="form-group custom-control custom-checkbox">
                     <input id="privacy-policy" type="checkbox" class="custom-control-input" required>
@@ -34,6 +34,5 @@
         </div>
     </div>
 </div>
-<script src="/js/sign-up.js"></script>
 <?php $content = ob_get_clean(); ?>
 <?php require("{$root}/views/base.php"); ?>

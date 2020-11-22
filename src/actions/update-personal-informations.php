@@ -9,18 +9,18 @@ $alert = [
 
 while(true) {
     if($_SERVER["REQUEST_METHOD"] !== "POST") break;
-    if(!isset($_POST["firstName"])) break;
-    if(!isset($_POST["lastName"])) break;
+    if(!isset($_POST["first-name"])) break;
+    if(!isset($_POST["last-name"])) break;
     if(!isset($_POST["gender"])) break;
     if(!isset($_POST["email"])) break;
     if(!isset($_POST["phone"])) break;
-    if(!isset($_POST["birthDate"])) break;
-    if(!is_string($_POST["firstName"])) break;
-    if(!is_string($_POST["lastName"])) break;
+    if(!isset($_POST["birth-date"])) break;
+    if(!is_string($_POST["first-name"])) break;
+    if(!is_string($_POST["last-name"])) break;
     if(!is_string($_POST["gender"])) break;
     if(!is_string($_POST["email"])) break;
     if(!is_string($_POST["phone"])) break;
-    if(!is_string($_POST["birthDate"])) break;
+    if(!is_string($_POST["birth-date"])) break;
     
     if($_POST["gender"] !== "") {
         if(!in_array($_POST["gender"], ["male", "female"])) {
@@ -32,21 +32,20 @@ while(true) {
             break;
         }
     }
-    if($_POST["phone"] !== "") {
-        # To do
-    }
-    if($_POST["birthDate"] !== "") {
-        # To do
+    if($_POST["birth-date"] !== "") {
+        if(!Utils::checkDateFormat($_POST["birth-date"])) {
+            break;
+        }
     }
     
     $query = ["_id" => $_SESSION["id"]];
     $account = $accountManager->read($query);
-    $account["firstName"] = $_POST["firstName"];
-    $account["lastName"] = $_POST["lastName"];
+    $account["firstName"] = $_POST["first-name"];
+    $account["lastName"] = $_POST["last-name"];
     $account["gender"] = $_POST["gender"];
     $account["email"] = $_POST["email"];
     $account["phone"] = $_POST["phone"];
-    $account["birthDate"] = $_POST["birthDate"];
+    $account["birthDate"] = $_POST["birth-date"];
     $accountManager->update($account);
     
     $alert = [

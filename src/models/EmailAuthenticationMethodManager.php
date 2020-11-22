@@ -11,4 +11,23 @@ class EmailAuthenticationMethodManager {
         $collection = $database->emailAuthenticationMethods;
         return $collection->findOne($query);
     }
+    
+    public function update(MongoDB\Model\BSONDocument $emailAuthenticationMethod) {
+        global $database;
+        $collection = $database->emailAuthenticationMethods;
+        return $collection->updateOne(
+            ["_id" => $emailAuthenticationMethod["_id"]],
+            ["\$set" => $emailAuthenticationMethod]
+        );
+    }
+    
+    public function delete(array $query, bool $multiple = false) {
+        global $database;
+        $collection = $database->emailAuthenticationMethods;
+        if($multiple) {
+            return $collection->deleteMany($query);
+        } else {
+            return $collection->deleteOne($query);
+        }
+    }
 }

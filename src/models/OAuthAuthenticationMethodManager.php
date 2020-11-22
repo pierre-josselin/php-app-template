@@ -6,9 +6,23 @@ class OAuthAuthenticationMethodManager {
         $collection->insertOne($oauthAuthenticationMethod);
     }
     
-    public function read(array $query) {
+    public function read(array $query, bool $multiple = false) {
         global $database;
         $collection = $database->oauthAuthenticationMethods;
-        return $collection->findOne($query);
+        if($multiple) {
+            return $collection->find($query)->toArray();
+        } else {
+            return $collection->findOne($query);
+        }
+    }
+    
+    public function delete(array $query, bool $multiple = false) {
+        global $database;
+        $collection = $database->oauthAuthenticationMethods;
+        if($multiple) {
+            return $collection->deleteMany($query);
+        } else {
+            return $collection->deleteOne($query);
+        }
     }
 }
