@@ -12,6 +12,7 @@ class Configuration {
         "/settings" => "/controllers/settings.php",
         "/sign-up" => "/controllers/sign-up.php",
         "/sign-in" => "/controllers/sign-in.php",
+        "/privacy-policy" => "/controllers/privacy-policy.php",
         "/actions/sign-up" => "/actions/sign-up.php",
         "/actions/sign-in" => "/actions/sign-in.php",
         "/actions/sign-out" => "/actions/sign-out.php",
