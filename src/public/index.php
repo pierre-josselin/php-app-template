@@ -14,6 +14,10 @@ ini_set("display_errors", Configuration::DEBUG);
 date_default_timezone_set(Configuration::TIMEZONE);
 require_once("/var/www/vendor/autoload.php");
 
+if(!is_dir("{$root}/files")) {
+    mkdir("{$root}/files");
+}
+
 $oauthAuthenticationMethods = Configuration::OAUTH_AUTHENTICATION_METHODS;
 
 if(isset($oauthAuthenticationMethods["facebook"])) {
@@ -46,6 +50,7 @@ if(!isset($_SESSION["alerts"])) {
 $accountManager = new AccountManager();
 $emailAuthenticationMethodManager = new EmailAuthenticationMethodManager();
 $oauthAuthenticationMethodManager = new OAuthAuthenticationMethodManager();
+$fileManager = new FileManager();
 
 if(isset($_SESSION["id"])) {
     $query = ["_id" => $_SESSION["id"]];

@@ -20,9 +20,9 @@ class OAuthAuthenticationMethodManager {
         global $database;
         $collection = $database->oauthAuthenticationMethods;
         if($multiple) {
-            return $collection->deleteMany($query);
+            $collection->deleteMany($query);
         } else {
-            return $collection->deleteOne($query);
+            $collection->deleteOne($query);
         }
     }
 }

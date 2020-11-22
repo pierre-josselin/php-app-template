@@ -15,7 +15,7 @@ class AccountManager {
     public function update(MongoDB\Model\BSONDocument $account) {
         global $database;
         $collection = $database->accounts;
-        return $collection->updateOne(
+        $collection->updateOne(
             ["_id" => $account["_id"]],
             ["\$set" => $account]
         );
@@ -25,9 +25,9 @@ class AccountManager {
         global $database;
         $collection = $database->accounts;
         if($multiple) {
-            return $collection->deleteMany($query);
+            $collection->deleteMany($query);
         } else {
-            return $collection->deleteOne($query);
+            $collection->deleteOne($query);
         }
     }
 }

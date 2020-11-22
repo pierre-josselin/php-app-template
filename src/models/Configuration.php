@@ -13,6 +13,7 @@ class Configuration {
         "/sign-up" => "/controllers/sign-up.php",
         "/sign-in" => "/controllers/sign-in.php",
         "/privacy-policy" => "/controllers/privacy-policy.php",
+        "/file" => "/controllers/file.php",
         "/actions/sign-up" => "/actions/sign-up.php",
         "/actions/sign-in" => "/actions/sign-in.php",
         "/actions/sign-out" => "/actions/sign-out.php",
@@ -23,6 +24,8 @@ class Configuration {
         "/actions/delete-account" => "/actions/delete-account.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
+        "/development" => "/controllers/development.php",
+        "/actions/development" => "/actions/development.php",
     ];
     const OAUTH_AUTHENTICATION_METHODS = [
         "facebook" => [
