@@ -4,10 +4,25 @@ A PHP MVC application template including an account system.
 
 ## Installation
 
+1. Create an instance of Debian 9 (stretch)
+2. Initialize a [web server](https://github.com/pierre-josselin/web-server) and configure a virtual host
+3. Install MongoDB
+```sh
+wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+echo "deb http://repo.mongodb.org/apt/debian stretch/mongodb-org/4.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+sudo apt update
+sudo apt install -y mongodb-org
+sudo service mongod start
+```
+4. Install PHP App Template
 ```sh
 chmod +x install.sh
 sudo ./install.sh
 ```
+5. Copy all source files to web server directory
+
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-debian/
+https://docs.mongodb.com/drivers/php
 
 ## Features
 
@@ -39,7 +54,7 @@ sudo ./install.sh
 
 ## Release history
 
-- [1.0.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.0.0)
+- [1.0.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.0.0) - 22/11/2020
 
 ## Model
 
