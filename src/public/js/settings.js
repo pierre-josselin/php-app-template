@@ -7,7 +7,7 @@ var settings = {
             locale: "fr",
             title: "La suppression est définitive.<br>Entrez <b>supprimer mon compte</b> pour continuer.",
             callback: function(result) {
-                if(!result != "supprimer mon compte") return;
+                if(result != "supprimer mon compte") return;
                 var url = "/actions/delete-account";
                 utils.request(url, "post");
             }
