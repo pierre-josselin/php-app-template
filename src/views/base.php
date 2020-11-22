@@ -23,6 +23,17 @@
                             </li>
                         <?php endforeach; ?>
                     </ul>
+                    <span class="text-light mr-4">
+                        <?php
+                            if($currentAccount["firstName"] && $currentAccount["lastName"]) {
+                                echo htmlentities(implode(" ", [$currentAccount["firstName"], $currentAccount["lastName"]]));
+                            } elseif($currentAccount["firstName"]) {
+                                echo htmlentities($currentAccount["firstName"]);
+                            } elseif($currentAccount["email"]) {
+                                echo htmlentities($currentAccount["email"]);
+                            }
+                        ?>
+                    </span>
                     <a class="text-light mr-3" href="/settings"><i class="fas fa-cog"></i></a>
                     <a class="text-light" href="/actions/sign-out"><i class="fas fa-sign-out-alt"></i></a>
                 <?php else: ?>

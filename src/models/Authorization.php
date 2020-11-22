@@ -6,7 +6,8 @@ class Authorization {
             header("Location: /sign-in");
             exit;
         }
-        $account = $accountManager->read(["_id" => $_SESSION["id"]]);
+        $query = ["_id" => $_SESSION["id"]];
+        $account = $accountManager->read($query);
         if(!$account) {
             header("Location: /actions/sign-out");
             exit;
