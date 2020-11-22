@@ -28,6 +28,7 @@ while(true) {
     
     $account = [
         "_id" => Utils::generateId(),
+        "type" => "user",
         "email" => $_POST["email"],
         "enabled" => true,
         "registrationTime" => time()

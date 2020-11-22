@@ -89,6 +89,7 @@ while(true) {
         
         $account = [
             "_id" => Utils::generateId(),
+            "type" => "user",
             "enabled" => true,
             "registrationTime" => time()
         ];
