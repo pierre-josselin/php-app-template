@@ -1,2 +1,2 @@
 <?php
-require("{$root}/views/privacy-policy.php");
+require("{$root}/views/pages/privacy-policy.php");

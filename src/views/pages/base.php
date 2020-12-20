@@ -17,9 +17,9 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <?php if(isset($_SESSION["id"])): ?>
                     <ul class="navbar-nav mr-auto">
-                        <?php foreach(Configuration::NAVIGATION as $path => $name): ?>
+                        <?php foreach(Configuration::NAVIGATION as $path => $id): ?>
                             <li class="nav-item <?php if(constant("PATH") === $path) echo "active"; ?>">
-                                <a href="<?= $path ?>" class="nav-link"><?= $name ?></a>
+                                <a href="<?= $path ?>" class="nav-link"><?= ucfirst($localization->getText($id)) ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -36,8 +36,8 @@
                     <a class="text-light" href="/actions/sign-out"><i class="fas fa-sign-out-alt"></i></a>
                 <?php else: ?>
                     <div class="ml-auto">
-                        <a href="/sign-in" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-in") echo "-outline"; ?>-light">connexion</a>
-                        <a href="/sign-up" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-up") echo "-outline"; ?>-light ml-3">inscription</a>
+                        <a href="/sign-in" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-in") echo "-outline"; ?>-light"><?= $localization->getText("sign_in") ?></a>
+                        <a href="/sign-up" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-up") echo "-outline"; ?>-light ml-3"><?= $localization->getText("sign_up") ?></a>
                     </div>
                 <?php endif; ?>
             </div>

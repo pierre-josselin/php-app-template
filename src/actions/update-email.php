@@ -4,7 +4,7 @@ Authorization::mustBeSignedIn();
 $location = "/settings";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -20,7 +20,7 @@ while(true) {
     if($emailAuthenticationMethod["email"] === $_POST["email"]) {
         $alert = [
             "type" => "info",
-            "message" => "L'adresse e-mail est identique."
+            "message" => $localization->getText("alert_same_email")
         ];
         break;
     }
@@ -30,7 +30,7 @@ while(true) {
     if($result) {
         $alert = [
             "type" => "danger",
-            "message" => "L'adresse e-mail est déjà utilisée."
+            "message" => $localization->getText("alert_email_unavailable")
         ];
         break;
     }
@@ -40,7 +40,7 @@ while(true) {
     
     $alert = [
         "type" => "success",
-        "message" => "L'adresse e-mail a bien été mise à jour."
+        "message" => $localization->getText("alert_email_updated")
     ];
     break;
 }

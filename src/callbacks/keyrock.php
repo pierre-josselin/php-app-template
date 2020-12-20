@@ -8,7 +8,7 @@ if(isset($_SESSION["id"])) {
 }
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -32,7 +32,7 @@ while(true) {
         if($oauthAuthenticationMethod) {
             $alert = [
                 "type" => "info",
-                "message" => "Keyrock est déjà associé à ce compte."
+                "message" => $localization->getText("alert_keyrock_already_associated")
             ];
             break;
         }
@@ -43,7 +43,7 @@ while(true) {
         if($oauthAuthenticationMethod) {
             $alert = [
                 "type" => "danger",
-                "message" => "Ce compte Keyrock est déjà associé à un autre compte."
+                "message" => $localization->getText("alert_keyrock_unavailable")
             ];
             break;
         }
@@ -61,7 +61,7 @@ while(true) {
         
         $alert = [
             "type" => "success",
-            "message" => "Keyrock a bien été associé à ce compte."
+            "message" => $localization->getText("alert_keyrock_associated")
         ];
         break;
     } else {
@@ -76,7 +76,7 @@ while(true) {
             if(!$account["enabled"]) {
                 $alert = [
                     "type" => "danger",
-                    "message" => "Ce compte est désactivé."
+                    "message" => $localization->getText("alert_disabled_account")
                 ];
                 break;
             }
@@ -113,7 +113,7 @@ while(true) {
         $location = "/";
         $alert = [
             "type" => "success",
-            "message" => "Le compte a bien été créé."
+            "message" => $localization->getText("alert_account_created")
         ];
         break;
     }

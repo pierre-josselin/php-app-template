@@ -10,4 +10,4 @@ $settingsOAuthAuthenticationMethods = [];
 foreach($result as $key => $value) {
     $settingsOAuthAuthenticationMethods[$value["provider"]] = $value;
 }
-require("{$root}/views/settings.php");
+require("{$root}/views/pages/settings.php");

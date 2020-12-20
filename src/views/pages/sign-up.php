@@ -1,38 +1,38 @@
-<?php $title = "Inscription"; ?>
+<?php $title = ucfirst($localization->getText("title_sign_up")); ?>
 <?php ob_start(); ?>
 <div class="container my-5 form">
     <div class="card">
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
-            <?php require("{$root}/views/alerts.php"); ?>
+            <?php require("{$root}/views/pages/alerts.php"); ?>
             <?php if($oauthAuthenticationMethods): ?>
                 <?php foreach(array_keys($oauthAuthenticationMethods) as $index => $key): ?>
                     <a href="<?= htmlspecialchars($oauthAuthenticationMethods[$key]["signInUrl"]) ?>" class="btn btn-<?= $key ?> w-100
-                    <?php if($index < count($oauthAuthenticationMethods) - 1) echo "mb-3"; ?>">Continuer avec <?= ucfirst($key) ?></a>
+                    <?php if($index < count($oauthAuthenticationMethods) - 1) echo "mb-3"; ?>"><?= ucfirst($localization->getText("continue_with")) ?> <?= ucfirst($key) ?></a>
                 <?php endforeach; ?>
                 <hr>
             <?php endif; ?>
             <form action="/actions/sign-up" method="post">
                 <div class="form-group">
-                    <label for="email">Adresse e-mail</label>
+                    <label for="email"><?= ucfirst($localization->getText("email")) ?></label>
                     <input id="email" type="email" name="email" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Mot de passe</label>
+                    <label for="password"><?= ucfirst($localization->getText("password")) ?></label>
                     <input id="password" type="password" name="password" minlength="6" maxlength="128" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <label for="password-confirmation">Confirmation du mot de passe</label>
+                    <label for="password-confirmation"><?= ucfirst($localization->getText("password_confirmation")) ?></label>
                     <input id="password-confirmation" type="password" minlength="6" maxlength="128" class="form-control" onchange="utils.checkPasswordConfirmation(this);" required>
                 </div>
                 <div class="form-group custom-control custom-checkbox">
                     <input id="privacy-policy" type="checkbox" class="custom-control-input" required>
-                    <label for="privacy-policy" class="custom-control-label">J'accepte la <a href="/privacy-policy" target="_blank">politique de confidentialité</a>.</label>
+                    <label for="privacy-policy" class="custom-control-label"><?= ucfirst($localization->getText("i_accept_the")) ?></a> <a href="/privacy-policy" target="_blank"><?= $localization->getText("privacy_policy") ?></a>.</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">S'inscrire</button>
+                <button type="submit" class="btn btn-primary w-100"><?= ucfirst($localization->getText("to_sign_in")) ?></button>
             </form>
         </div>
     </div>
 </div>
 <?php $content = ob_get_clean(); ?>
-<?php require("{$root}/views/base.php"); ?>
+<?php require("{$root}/views/pages/base.php"); ?>

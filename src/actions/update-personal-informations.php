@@ -4,7 +4,7 @@ Authorization::mustBeSignedIn();
 $location = "/settings";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -62,7 +62,7 @@ while(true) {
     
     $alert = [
         "type" => "success",
-        "message" => "Les informations personnelles ont bien été enregistrées."
+        "message" => $localization->getText("alert_personal_informations_updated")
     ];
     break;
 }

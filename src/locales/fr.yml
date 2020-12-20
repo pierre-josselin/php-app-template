@@ -1,0 +1,77 @@
+# Titles
+title_development: développement
+title_home: accueil
+title_privacy_policy: politique de confidentialité
+title_settings: paramètres
+title_sign_in: connexion
+title_sign_up: inscription
+
+# Alerts
+alert_account_created: Le compte a bien été créé.
+alert_account_deleted: Le compte a bien été supprimé.
+alert_authentication_method_deleted: "{name} a bien été retiré de ce compte."
+alert_disabled_account: Ce compte est désactivé.
+alert_email_unavailable: L'adresse e-mail est déjà utilisée.
+alert_email_updated: L'adresse e-mail a bien été mise à jour.
+alert_error: Une erreur s'est produite.
+alert_facebook_already_associated: Facebook est déjà associé à ce compte.
+alert_facebook_associated: Facebook a bien été associé à ce compte.
+alert_facebook_unavailable: Ce compte Facebook est déjà associé à un autre compte.
+alert_file_uploaded: Le fichier a bien été téléchargé.
+alert_incorrect_password: Le mot de passe est incorrect.
+alert_keyrock_already_associated: Keyrock est déjà associé à ce compte.
+alert_keyrock_associated: Keyrock a bien été associé à ce compte.
+alert_keyrock_unavailable: Ce compte Keyrock est déjà associé à un autre compte.
+alert_only_authentication_method: "Impossible de retirer {name} car c'est la seule méthode d'authentification associée au compte."
+alert_password_updated: Le mot de passe a bien été mise à jour.
+alert_personal_informations_updated: Les informations personnelles ont bien été enregistrées.
+alert_same_email: L'adresse e-mail est identique.
+alert_unknown_email: L'adresse e-mail n'existe pas.
+
+# Dialogs
+dialog_account_deletion: La suppression du compte est définitive.<br>Continuer ?
+dialog_passwords_not_match: Les mots de passe ne correspondent pas.
+
+# Global
+account: compte
+account_details: détails du compte
+address: adresse
+authentication: authentification
+authentication_methods: méthodes d'authentification
+birth_date: date de naissance
+change_password: modifier le mot de passe
+city: ville
+close: fermer
+continue_with: continuer avec
+country: pays
+current_password: mot de passe actuel
+delete_account: supprimer le compte
+edit: modifier
+email: adresse e-mail
+female: femme
+first_name: prénom
+gender: genre
+home: accueil
+i_accept_the: j'accepte la
+identifier: identifiant
+last_name: nom
+link: connecter
+male: homme
+new_password: nouveau mot de passe
+new_password_confirmation: confirmation du nouveau mot de passe
+password: mot de passe
+password_confirmation: confirmation du mot de passe
+personal_informations: informations personnelles
+phone: numéro de téléphone
+postal_code: code postal
+privacy_policy: politique de confidentialité
+save: enregistrer
+select_file: sélectionner un fichier
+send: envoyer
+sign_in: connexion
+sign_up: inscription
+sign_up_date: date d'inscription
+to_sign_in: se connecter
+to_sign_up: s'inscrire
+unlink: déconnecter
+update: mettre à jour

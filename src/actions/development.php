@@ -4,7 +4,7 @@ Authorization::mustBeSignedIn();
 $location = "/development";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -30,7 +30,7 @@ while(true) {
     
     $alert = [
         "type" => "success",
-        "message" => "Le fichier a bien été téléchargé."
+        "message" => $localization->getText("alert_file_uploaded")
     ];
     break;
 }

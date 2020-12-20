@@ -1,13 +1,16 @@
+<?php
+header("Content-Type: application/json");
+?>
 var settings = {
     unlinkOauth: function(provider) {
         utils.request("/actions/unlink-oauth", "post", {"provider": provider});
     },
     deleteAccount: function() {
-        bootbox.prompt({
-            locale: "fr",
-            title: "La suppression est définitive.<br>Entrez <b>supprimer mon compte</b> pour continuer.",
+        bootbox.confirm({
+            locale: <?= json_encode($localization->getLocale()) ?>,
+            message: <?= json_encode($localization->getText("dialog_account_deletion")) ?>,
             callback: function(result) {
-                if(result != "supprimer mon compte") return;
+                if(!result) return;
                 var url = "/actions/delete-account";
                 utils.request(url, "post");
             }

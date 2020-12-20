@@ -4,7 +4,7 @@ Authorization::mustBeSignedIn();
 $location = "/settings";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -23,9 +23,12 @@ while(true) {
     $result = $oauthAuthenticationMethodManager->read($query, true);
     
     if(!$emailAuthenticationMethod && count($result) < 2) {
+        $variables = [
+            "name" => $name
+        ];
         $alert = [
             "type" => "danger",
-            "message" => "Impossible de retirer {$name} car c'est la seule méthode d'authentification associée au compte."
+            "message" => $localization->getText("alert_only_authentication_method", $variables)
         ];
         break;
     }
@@ -33,9 +36,12 @@ while(true) {
     $query = ["accountId" => $_SESSION["id"], "provider" => $_POST["provider"]];
     $oauthAuthenticationMethodManager->delete($query);
     
+    $variables = [
+        "name" => $name
+    ];
     $alert = [
         "type" => "success",
-        "message" => "{$name} a bien été retiré de ce compte."
+        "message" => $localization->getText("alert_authentication_method_deleted", $variables)
     ];
     break;
 }

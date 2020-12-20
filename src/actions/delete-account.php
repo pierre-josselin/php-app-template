@@ -4,7 +4,7 @@ Authorization::mustBeSignedIn();
 $location = "/settings";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -19,7 +19,7 @@ while(true) {
     $location = "/actions/sign-out";
     $alert = [
         "type" => "success",
-        "message" => "Le compte a bien été supprimé."
+        "message" => $localization->getText("alert_account_deleted")
     ];
     break;
 }

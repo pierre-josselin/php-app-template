@@ -4,7 +4,7 @@ Authorization::mustNotBeSignedIn();
 $location = "/sign-in";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -19,7 +19,7 @@ while(true) {
     if(!$emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
-            "message" => "L'adresse e-mail n'existe pas."
+            "message" => $localization->getText("alert_unknown_email")
         ];
         break;
     }
@@ -27,7 +27,7 @@ while(true) {
     if(!password_verify($_POST["password"], $emailAuthenticationMethod["passwordHash"])) {
         $alert = [
             "type" => "danger",
-            "message" => "Le mot de passe est incorrect."
+            "message" => $localization->getText("alert_incorrect_password")
         ];
         break;
     }
@@ -38,7 +38,7 @@ while(true) {
     if(!$account["enabled"]) {
         $alert = [
             "type" => "danger",
-            "message" => "Ce compte est désactivé."
+            "message" => $localization->getText("alert_disabled_account")
         ];
         break;
     }

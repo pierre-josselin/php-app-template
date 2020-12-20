@@ -18,6 +18,7 @@ if(!is_dir("{$root}/files")) {
     mkdir("{$root}/files");
 }
 
+$localization = new Localization(Configuration::LOCALE);
 $oauthAuthenticationMethods = Configuration::OAUTH_AUTHENTICATION_METHODS;
 
 if(isset($oauthAuthenticationMethods["facebook"])) {

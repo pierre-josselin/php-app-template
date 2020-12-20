@@ -1,3 +1,6 @@
+<?php
+header("Content-Type: application/json");
+?>
 var utils = {
     request: function(url, method, data = false) {
         var form = document.createElement("form");
@@ -19,7 +22,7 @@ var utils = {
     checkPasswordConfirmation: function(element) {
         var password = document.getElementById("password").value;
         if(element.value != password) {
-            element.setCustomValidity("Les mots de passe ne correspondent pas.");
+            element.setCustomValidity(<?= json_encode($localization->getText("dialog_passwords_not_match")) ?>);
         } else {
             element.setCustomValidity("");
         }

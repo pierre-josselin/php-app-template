@@ -4,7 +4,7 @@ Authorization::mustNotBeSignedIn();
 $location = "/sign-up";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -21,7 +21,7 @@ while(true) {
     if($emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
-            "message" => "L'adresse e-mail est déjà utilisée."
+            "message" => $localization->getText("alert_email_unavailable")
         ];
         break;
     }
@@ -47,7 +47,7 @@ while(true) {
     $location = "/";
     $alert = [
         "type" => "success",
-        "message" => "Le compte a bien été créé."
+        "message" => $localization->getText("alert_account_created")
     ];
     break;
 }

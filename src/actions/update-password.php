@@ -4,7 +4,7 @@ Authorization::mustBeSignedIn();
 $location = "/settings";
 $alert = [
     "type" => "danger",
-    "message" => "Une erreur s'est produite."
+    "message" => $localization->getText("alert_error")
 ];
 
 while(true) {
@@ -22,7 +22,7 @@ while(true) {
     if(!password_verify($_POST["password"], $emailAuthenticationMethod["passwordHash"])) {
         $alert = [
             "type" => "danger",
-            "message" => "Le mot de passe est incorrect."
+            "message" => $localization->getText("alert_incorrect_password")
         ];
         break;
     }
@@ -32,7 +32,7 @@ while(true) {
     
     $alert = [
         "type" => "success",
-        "message" => "Le mot de passe a bien été mise à jour."
+        "message" => $localization->getText("alert_password_updated")
     ];
     break;
 }
