@@ -82,7 +82,6 @@ class Configuration {
 
 ## Features
 
-
 - Account system
 - Email/password authentication method
 - OAuth authentication methods
