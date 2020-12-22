@@ -4,6 +4,7 @@ apt install -y php-mbstring
 apt install -y zip unzip
 apt install -y composer
 apt install -y php-dev
+apt install -y php-yaml
 pecl install mongodb
 echo "extension=mongodb.so" >> /etc/php/7.0/cli/php.ini
 echo "extension=mongodb.so" >> /etc/php/7.0/apache2/php.ini
