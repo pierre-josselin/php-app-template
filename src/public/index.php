@@ -20,27 +20,28 @@ if(!is_dir(Configuration::ROOT . "/files")) {
 }
 
 $localization = new Localization(Configuration::LOCALE);
-$oauthAuthenticationMethods = Configuration::OAUTH_AUTHENTICATION_METHODS;
 
-if(isset($oauthAuthenticationMethods["facebook"])) {
+if(isset(Configuration::OAUTH_AUTHENTICATION_METHODS["facebook"])) {
     $facebook = new Facebook\Facebook([
-        "app_id" => $oauthAuthenticationMethods["facebook"]["appId"],
-        "app_secret" => $oauthAuthenticationMethods["facebook"]["appSecret"],
-        "default_graph_version" => $oauthAuthenticationMethods["facebook"]["graphVersion"]
+        "app_id" => Configuration::OAUTH_AUTHENTICATION_METHODS["facebook"]["appId"],
+        "app_secret" => Configuration::OAUTH_AUTHENTICATION_METHODS["facebook"]["appSecret"],
+        "default_graph_version" => Configuration::OAUTH_AUTHENTICATION_METHODS["facebook"]["graphVersion"]
     ]);
     $facebookRedirectLoginHelper = $facebook->getRedirectLoginHelper();
-    $oauthAuthenticationMethods["facebook"]["signInUrl"] = $facebookRedirectLoginHelper->getLoginUrl(
-        $oauthAuthenticationMethods["facebook"]["redirectUri"],
+    $url = $facebookRedirectLoginHelper->getLoginUrl(
+        Configuration::OAUTH_AUTHENTICATION_METHODS["facebook"]["redirectUri"],
         ["email"]
     );
+    define("FACEBOOK_SIGN_IN_URL", $url);
 }
 
-if(isset($oauthAuthenticationMethods["keyrock"])) {
-    $oauthAuthenticationMethods["keyrock"]["signInUrl"] = $oauthAuthenticationMethods["keyrock"]["url"];
-    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "/oauth2/authorize?response_type=token";
-    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&client_id=" . $oauthAuthenticationMethods["keyrock"]["appId"];
-    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&redirect_uri=" . $oauthAuthenticationMethods["keyrock"]["redirectUri"];
-    $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&state=false";
+if(isset(Configuration::OAUTH_AUTHENTICATION_METHODS["keyrock"])) {
+    $url = Configuration::OAUTH_AUTHENTICATION_METHODS["keyrock"]["url"];
+    $url .= "/oauth2/authorize?response_type=token";
+    $url .= "&client_id=" . Configuration::OAUTH_AUTHENTICATION_METHODS["keyrock"]["appId"];
+    $url .= "&redirect_uri=" . Configuration::OAUTH_AUTHENTICATION_METHODS["keyrock"]["redirectUri"];
+    $url .= "&state=false";
+    define("KEYROCK_SIGN_IN_URL", $url);
 }
 
 $databaseName = Configuration::DATABASE_NAME;

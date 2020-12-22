@@ -11,7 +11,7 @@ while(true) {
     if($_SERVER["REQUEST_METHOD"] !== "POST") break;
     if(!isset($_POST["provider"])) break;
     if(!is_string($_POST["provider"])) break;
-    if(!isset($oauthAuthenticationMethods[$_POST["provider"]])) break;
+    if(!isset(Configuration::OAUTH_AUTHENTICATION_METHODS[$_POST["provider"]])) break;
     $name = ucfirst($_POST["provider"]);
     
     $query = ["accountId" => $_SESSION["id"], "provider" => $_POST["provider"]];

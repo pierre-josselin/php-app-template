@@ -12,7 +12,7 @@ $alert = [
 ];
 
 while(true) {
-    if(!isset($oauthAuthenticationMethods["facebook"])) break;
+    if(!isset(Configuration::OAUTH_AUTHENTICATION_METHODS["facebook"])) break;
     if($_SERVER["REQUEST_METHOD"] !== "GET") break;
     
     try {

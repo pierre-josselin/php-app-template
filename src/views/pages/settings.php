@@ -180,16 +180,16 @@
                                         -
                                     <?php endif; ?>
                                 </dd>
-                                <?php foreach(array_keys($oauthAuthenticationMethods) as $index => $key): ?>
+                                <?php foreach(array_keys(Configuration::OAUTH_AUTHENTICATION_METHODS) as $index => $key): ?>
                                     <dt class="col-lg-3"><?= ucfirst($key) ?></dt>
-                                    <dd class="col-lg-9 text-monospace <?php if($index < count($oauthAuthenticationMethods) - 1) echo "mb-3"; ?>">
+                                    <dd class="col-lg-9 text-monospace <?php if($index < count(Configuration::OAUTH_AUTHENTICATION_METHODS) - 1) echo "mb-3"; ?>">
                                         <?php if(isset($oauthAuthenticationMethods[$key])): ?>
                                             <?= ($oauthAuthenticationMethods[$key]["name"] ?
                                             $oauthAuthenticationMethods[$key]["name"] :
                                             $oauthAuthenticationMethods[$key]["id"]) ?>
                                             <a href='javascript: settings.unlinkOauth(<?= json_encode($key) ?>);' class="text-danger ml-3"><?= ucfirst($localization->getText("unlink")) ?></a>
                                         <?php else: ?>
-                                            <a href="<?= htmlspecialchars($oauthAuthenticationMethods[$key]["signInUrl"]) ?>"><?= ucfirst($localization->getText("link")) ?></a>
+                                            <a href="<?= htmlspecialchars(constant(strtoupper($key) . "_SIGN_IN_URL")) ?>"><?= ucfirst($localization->getText("link")) ?></a>
                                         <?php endif; ?>
                                     </dd>
                                 <?php endforeach; ?>
