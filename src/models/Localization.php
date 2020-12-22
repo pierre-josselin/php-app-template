@@ -4,9 +4,8 @@ class Localization {
     private $localizations;
     
     public function __construct(string $locale) {
-        global $root;
         $this->locale = $locale;
-        $path = "{$root}/locales/{$locale}.yml";
+        $path = Configuration::ROOT . "/locales/{$locale}.yml";
         $content = file_get_contents($path);
         $this->localizations = yaml_parse($content);
     }

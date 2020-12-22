@@ -1,3 +1,3 @@
 <?php
 Authorization::mustBeSignedIn();
-require("{$root}/views/pages/development.php");
+require(Configuration::ROOT . "/views/pages/development.php");

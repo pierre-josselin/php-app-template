@@ -1,2 +1,2 @@
 <?php
-require("{$root}/views/pages/privacy-policy.php");
+require(Configuration::ROOT . "/views/pages/privacy-policy.php");

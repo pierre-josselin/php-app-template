@@ -4,9 +4,9 @@
     <div class="card">
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
-            <?php require("{$root}/views/pages/alerts.php"); ?>
+            <?php require(Configuration::ROOT . "/views/pages/alerts.php"); ?>
         </div>
     </div>
 </div>
 <?php $content = ob_get_clean(); ?>
-<?php require("{$root}/views/pages/base.php"); ?>
+<?php require(Configuration::ROOT . "/views/pages/base.php"); ?>

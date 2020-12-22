@@ -1,3 +1,3 @@
 <?php
 Authorization::mustBeSignedIn();
-require("{$root}/views/pages/home.php");
+require(Configuration::ROOT . "/views/pages/home.php");

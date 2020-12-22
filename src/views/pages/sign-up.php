@@ -4,7 +4,7 @@
     <div class="card">
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
-            <?php require("{$root}/views/pages/alerts.php"); ?>
+            <?php require(Configuration::ROOT . "/views/pages/alerts.php"); ?>
             <?php if($oauthAuthenticationMethods): ?>
                 <?php foreach(array_keys($oauthAuthenticationMethods) as $index => $key): ?>
                     <a href="<?= htmlspecialchars($oauthAuthenticationMethods[$key]["signInUrl"]) ?>" class="btn btn-<?= $key ?> w-100
@@ -35,4 +35,4 @@
     </div>
 </div>
 <?php $content = ob_get_clean(); ?>
-<?php require("{$root}/views/pages/base.php"); ?>
+<?php require(Configuration::ROOT . "/views/pages/base.php"); ?>

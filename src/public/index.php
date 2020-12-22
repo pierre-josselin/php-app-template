@@ -1,10 +1,10 @@
 <?php
 session_start();
-$root = "/var/www/test.pierrejosselin.com";
+
+require_once("../models/Configuration.php");
 
 spl_autoload_register(function($class) {
-    global $root;
-    $path = "{$root}/models/{$class}.php";
+    $path = Configuration::ROOT . "/models/{$class}.php";
     if(!is_file($path)) return;
     require_once($path);
 });
@@ -12,10 +12,10 @@ spl_autoload_register(function($class) {
 error_reporting(E_ALL & ~E_NOTICE);
 ini_set("display_errors", Configuration::DEBUG);
 date_default_timezone_set(Configuration::TIMEZONE);
-require_once("{$root}/vendor/autoload.php");
+require_once(Configuration::ROOT . "/vendor/autoload.php");
 
-if(!is_dir("{$root}/files")) {
-    mkdir("{$root}/files");
+if(!is_dir(Configuration::ROOT . "/files")) {
+    mkdir(Configuration::ROOT . "/files");
 }
 
 $localization = new Localization(Configuration::LOCALE);
@@ -62,8 +62,8 @@ define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
 
 if(!array_key_exists(constant("PATH"), Configuration::ROUTES)) {
     http_response_code(404);
-} elseif(!is_file($root . Configuration::ROUTES[constant("PATH")])) {
+} elseif(!is_file(Configuration::ROOT . Configuration::ROUTES[constant("PATH")])) {
     http_response_code(500);
 } else {
-    require($root . Configuration::ROUTES[constant("PATH")]);
+    require(Configuration::ROOT . Configuration::ROUTES[constant("PATH")]);
 }
