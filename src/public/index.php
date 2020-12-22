@@ -42,7 +42,8 @@ if(isset($oauthAuthenticationMethods["keyrock"])) {
     $oauthAuthenticationMethods["keyrock"]["signInUrl"] .= "&state=false";
 }
 
-$database = (new MongoDB\Client())->database;
+$databaseName = Configuration::DATABASE_NAME;
+$database = (new MongoDB\Client())->$databaseName;
 
 if(!isset($_SESSION["alerts"])) {
     $_SESSION["alerts"] = [];
