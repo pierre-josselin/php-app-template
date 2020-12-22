@@ -25,10 +25,10 @@
                     </ul>
                     <span class="text-light mr-4">
                         <?php
-                            if($currentAccount["firstName"] || $currentAccount["lastName"]) {
-                                echo htmlentities("{$currentAccount["firstName"]} {$currentAccount["lastName"]}");
-                            } elseif($currentAccount["email"]) {
-                                echo htmlentities($currentAccount["email"]);
+                            if(constant("ACCOUNT")["firstName"] || constant("ACCOUNT")["lastName"]) {
+                                echo htmlentities(constant("ACCOUNT")["firstName"] . " " . constant("ACCOUNT")["lastName"]);
+                            } elseif(constant("ACCOUNT")["email"]) {
+                                echo htmlentities(constant("ACCOUNT")["email"]);
                             }
                         ?>
                     </span>

@@ -30,4 +30,16 @@ class Utils {
         $dateTime = DateTime::createFromFormat($format, $date);
         return $dateTime && $dateTime->format($format) === $date;
     }
+    
+    public static function objectToArray($object) {
+        if(is_object($object) || is_array($object)) {
+            $array = (array) $object;
+            foreach($array as &$item) {
+                $item = Utils::objectToArray($item);
+            }
+            return $array;
+        } else {
+            return $object;
+        }
+    }
 }

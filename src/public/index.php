@@ -54,7 +54,9 @@ $fileManager = new FileManager();
 
 if(isset($_SESSION["id"])) {
     $query = ["_id" => $_SESSION["id"]];
-    $currentAccount = $manager->read("accounts", $query);
+    $account = $manager->read("accounts", $query);
+    define("ACCOUNT", $account);
+    unset($account);
 }
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));

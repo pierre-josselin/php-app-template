@@ -2,12 +2,12 @@
 Authorization::mustBeSignedIn();
 $genders = ["male" => "Homme", "female" => "Femme"];
 $query = ["_id" => $_SESSION["id"]];
-$settingsAccount = $manager->read("accounts", $query);
+$account = $manager->read("accounts", $query);
 $query = ["accountId" => $_SESSION["id"]];
-$settingsEmailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+$emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
 $result = $manager->read("oauthAuthenticationMethods", $query, true);
-$settingsOAuthAuthenticationMethods = [];
+$oauthAuthenticationMethods = [];
 foreach($result as $key => $value) {
-    $settingsOAuthAuthenticationMethods[$value["provider"]] = $value;
+    $oauthAuthenticationMethods[$value["provider"]] = $value;
 }
 require(Configuration::ROOT . "/views/pages/settings.php");

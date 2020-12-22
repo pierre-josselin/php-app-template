@@ -1,24 +1,28 @@
 <?php
 class Manager {
-    public function create($collection, array $array) {
+    public function create($collection, array $data) {
         global $database;
-        $database->$collection->insertOne($array);
+        $database->$collection->insertOne($data);
     }
     
     public function read($collection, array $query, bool $multiple = false) {
         global $database;
         if($multiple) {
-            return $database->$collection->find($query)->toArray();
+            $result = $database->$collection->find($query)->toArray();
         } else {
-            return $database->$collection->findOne($query);
+            $result = $database->$collection->findOne($query);
         }
+        return Utils::objectToArray($result);
     }
     
-    public function update($collection, MongoDB\Model\BSONDocument $array) {
+    public function update($collection, array $data) {
         global $database;
+        if(!isset($data["_id"])) {
+            return false;
+        }
         $database->$collection->updateOne(
-            ["_id" => $array["_id"]],
-            ["\$set" => $array]
+            ["_id" => $data["_id"]],
+            ['$set' => $data]
         );
     }
     
