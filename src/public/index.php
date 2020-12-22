@@ -68,3 +68,5 @@ if(!array_key_exists(constant("PATH"), Configuration::ROUTES)) {
 } else {
     require(Configuration::ROOT . Configuration::ROUTES[constant("PATH")]);
 }
+
+exit;
