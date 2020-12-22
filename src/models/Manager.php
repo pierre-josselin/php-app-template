@@ -1,11 +1,11 @@
 <?php
 class Manager {
-    public function create($collection, array $data) {
+    public function create(string $collection, array $data) {
         global $database;
         $database->$collection->insertOne($data);
     }
     
-    public function read($collection, array $query, bool $multiple = false) {
+    public function read(string $collection, array $query, bool $multiple = false) {
         global $database;
         if($multiple) {
             $result = $database->$collection->find($query)->toArray();
@@ -15,7 +15,7 @@ class Manager {
         return Utils::objectToArray($result);
     }
     
-    public function update($collection, array $data) {
+    public function update(string $collection, array $data) {
         global $database;
         if(!isset($data["_id"])) {
             return false;
@@ -26,7 +26,7 @@ class Manager {
         );
     }
     
-    public function delete($collection, array $query, bool $multiple = false) {
+    public function delete(string $collection, array $query, bool $multiple = false) {
         global $database;
         if($multiple) {
             $database->$collection->deleteMany($query);
