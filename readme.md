@@ -43,7 +43,6 @@ class Configuration {
     const ROUTES = [
         "/" => "/controllers/home.php",
         "/actions/delete-account" => "/actions/delete-account.php",
-        "/actions/development" => "/actions/development.php",
         "/actions/sign-in" => "/actions/sign-in.php",
         "/actions/sign-out" => "/actions/sign-out.php",
         "/actions/sign-up" => "/actions/sign-up.php",
@@ -53,7 +52,6 @@ class Configuration {
         "/actions/update-personal-informations" => "/actions/update-personal-informations.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
-        "/development" => "/controllers/development.php",
         "/file" => "/controllers/file.php",
         "/privacy-policy" => "/controllers/privacy-policy.php",
         "/settings" => "/controllers/settings.php",
