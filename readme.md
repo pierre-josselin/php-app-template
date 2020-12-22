@@ -101,7 +101,7 @@ class Configuration {
 - English
 - French
 
-## Libraries
+## Included libraries
 
 - Bootstrap 4.5.3
 - Bootswatch 4.5.3
