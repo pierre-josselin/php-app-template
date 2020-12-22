@@ -1,0 +1,77 @@
+# Titles
+title_development: development
+title_home: home
+title_privacy_policy: privacy policy
+title_settings: settings
+title_sign_in: sign in
+title_sign_up: sign up
+
+# Alerts
+alert_account_created: The account has been successfully created.
+alert_account_deleted: The account has been deleted.
+alert_authentication_method_deleted: "{name} has been successfully removed from this account."
+alert_disabled_account: This account is disabled.
+alert_email_unavailable: The email address unavailable.
+alert_email_updated: The email address has been successfully updated.
+alert_error: An error has occurred.
+alert_facebook_already_associated: Facebook is already associated with this account.
+alert_facebook_associated: Facebook has been successfully associated with this account.
+alert_facebook_unavailable: This Facebook account is already associated with another account.
+alert_file_uploaded: The file has been uploaded.
+alert_incorrect_password: The password is incorrect.
+alert_keyrock_already_associated: Keyrock is already associated with this account.
+alert_keyrock_associated: Keyrock has been successfully associated with this account.
+alert_keyrock_unavailable: This Keyrock account is already associated with another account.
+alert_only_authentication_method: "Cannot remove {name} because it is the only authentication method associated with the account."
+alert_password_updated: The password has been successfully updated.
+alert_personal_informations_updated: Personal information has been saved.
+alert_same_email: The e-mail address is the same.
+alert_unknown_email: The email address does not exist.
+
+# Dialogs
+dialog_account_deletion: The account deletion is final.<br>Continue ?
+dialog_passwords_not_match: The passwords do not match.
+
+# Global
+account: account
+account_details: account details
+address: address
+authentication: authentication
+authentication_methods: authentication methods
+birth_date: birth date
+change_password: change password
+city: city
+close: close
+continue_with: continue with
+country: country
+current_password: current password
+delete_account: delete account
+edit: edit
+email: email
+female: female
+first_name: first name
+gender: gender
+home: home
+i_accept_the: i accept the
+identifier: identifier
+last_name: last name
+link: link
+male: male
+new_password: new password
+new_password_confirmation: new password confirmation
+password: password
+password_confirmation: password confirmation
+personal_informations: personal informations
+phone: phone
+postal_code: postal code
+privacy_policy: privacy policy
+save: save
+select_file: select file
+send: send
+sign_in: sign in
+sign_up: sign up
+sign_up_date: sign up date
+to_sign_in: sign in
+to_sign_up: sign up
+unlink: unlink
+update: update
