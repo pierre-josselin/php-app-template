@@ -1,11 +1,12 @@
 # PHP App Template
 
-A PHP MVC application template including an account system.
+A PHP MVC application template including an account system.<br>
+Apache web server and MongoDB database.
 
 ## Installation
 
 1. Create an instance of Debian 9 (stretch)
-2. Initialize a [web server](https://github.com/pierre-josselin/web-server) and configure a virtual host
+2. Initialize an Apache [web server](https://github.com/pierre-josselin/web-server) and configure a virtual host
 3. Install MongoDB
 ```sh
 wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -19,7 +20,7 @@ sudo service mongod start
 chmod +x install.sh
 sudo ./install.sh
 ```
-5. Copy all source files to web server directory
+5. Copy all source files to the web server directory
 
 https://docs.mongodb.com/manual/tutorial/install-mongodb-on-debian/<br>
 https://docs.mongodb.com/drivers/php
@@ -81,39 +82,37 @@ class Configuration {
 
 ## Features
 
-- MVC structure
-- Bootswatch styles
-- Email and password authentication method
-- Facebook authentication method
-- Keyrock authentication method
-- File storage (upload and download)
+
+- Account system
+- Email/password authentication method
+- OAuth authentication methods
 - Personal informations (name, gender, address...)
-- Authentication methods management
-- Email and password update
-- Account deletion
-- Privacy policy page
+- File storage system
+- Bootswatch styles
+- Localization
 
-## Server
+## Supported OAuth authentication methods
 
-- PHP
-- Apache
-- MongoDB
+- Facebook
+- Keyrock
+
+## Supported languages
+
+- English
+- French
 
 ## Libraries
 
-- jQuery 3.5.1
 - Bootstrap 4.5.3
 - Bootswatch 4.5.3
-- Bootbox 5.4.0
 - FontAwesome 5.15.1
+- jQuery 3.5.1
+- Bootbox 5.4.0
 
 ## Release history
 
-- [1.0.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.0.0) - 22/11/2020
-
-## Model
-
-![](https://i.imgur.com/uaySlrg.png)
+- [1.1.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.1.0) - 2020-12-23
+- [1.0.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.0.0) - 2020-11-22
 
 ## Screenshots
 
