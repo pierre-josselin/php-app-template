@@ -1,7 +1,8 @@
 <?php
-session_start();
-
 require_once("../models/Configuration.php");
+
+session_set_cookie_params(Configuration::SESSION_LIFESPAN, "/");
+session_start();
 
 spl_autoload_register(function($class) {
     $path = Configuration::ROOT . "/models/{$class}.php";

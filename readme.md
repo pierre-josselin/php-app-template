@@ -37,6 +37,7 @@ class Configuration {
     const TIMEZONE = "Europe/Paris";
     const ROOT = "/var/www/example.com";
     const DATABASE_NAME = "test";
+    const SESSION_LIFESPAN = 30 * 24 * 60 * 60;
     const NAVIGATION = [
         "/" => "title_home",
     ];
