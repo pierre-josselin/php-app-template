@@ -33,8 +33,10 @@ class Configuration {
     const DEBUG = true;
     const BRAND = "App Template";
     const STYLE = "flatly";
-    const LOCALE = "fr";
+    const LOCALE = "en";
     const TIMEZONE = "Europe/Paris";
+    const ROOT = "/var/www/example.com";
+    const DATABASE_NAME = "test";
     const NAVIGATION = [
         "/" => "title_home",
     ];
