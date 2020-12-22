@@ -49,14 +49,12 @@ if(!isset($_SESSION["alerts"])) {
     $_SESSION["alerts"] = [];
 }
 
-$accountManager = new AccountManager();
-$emailAuthenticationMethodManager = new EmailAuthenticationMethodManager();
-$oauthAuthenticationMethodManager = new OAuthAuthenticationMethodManager();
+$manager = new Manager();
 $fileManager = new FileManager();
 
 if(isset($_SESSION["id"])) {
     $query = ["_id" => $_SESSION["id"]];
-    $currentAccount = $accountManager->read($query);
+    $currentAccount = $manager->read("accounts", $query);
 }
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));

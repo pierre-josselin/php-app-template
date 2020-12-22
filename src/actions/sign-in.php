@@ -15,7 +15,7 @@ while(true) {
     if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) break;
     
     $query = ["email" => $_POST["email"]];
-    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($query);
+    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     if(!$emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
@@ -32,7 +32,7 @@ while(true) {
         break;
     }
     
-    $account = $accountManager->read(["_id" => $emailAuthenticationMethod["accountId"]]);
+    $account = $manager->read("accounts", ["_id" => $emailAuthenticationMethod["accountId"]]);
     if(!$account) break;
     
     if(!$account["enabled"]) {

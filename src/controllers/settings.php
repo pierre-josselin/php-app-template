@@ -2,10 +2,10 @@
 Authorization::mustBeSignedIn();
 $genders = ["male" => "Homme", "female" => "Femme"];
 $query = ["_id" => $_SESSION["id"]];
-$settingsAccount = $accountManager->read($query);
+$settingsAccount = $manager->read("accounts", $query);
 $query = ["accountId" => $_SESSION["id"]];
-$settingsEmailAuthenticationMethod = $emailAuthenticationMethodManager->read($query);
-$result = $oauthAuthenticationMethodManager->read($query, true);
+$settingsEmailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+$result = $manager->read("oauthAuthenticationMethods", $query, true);
 $settingsOAuthAuthenticationMethods = [];
 foreach($result as $key => $value) {
     $settingsOAuthAuthenticationMethods[$value["provider"]] = $value;

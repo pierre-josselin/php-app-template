@@ -45,7 +45,7 @@ while(true) {
     }
     
     $query = ["_id" => $_SESSION["id"]];
-    $account = $accountManager->read($query);
+    $account = $manager->read("accounts", $query);
     $account["firstName"] = $_POST["first-name"];
     $account["lastName"] = $_POST["last-name"];
     $account["gender"] = $_POST["gender"];
@@ -58,7 +58,7 @@ while(true) {
         "city" => $_POST["city"],
         "country" => $_POST["country"]
     ];
-    $accountManager->update($account);
+    $manager->update("accounts", $account);
     
     $alert = [
         "type" => "success",

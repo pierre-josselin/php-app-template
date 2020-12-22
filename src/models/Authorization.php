@@ -1,13 +1,13 @@
 <?php
 class Authorization {
     public static function mustBeSignedIn() {
-        global $accountManager;
+        global $manager;
         if(!isset($_SESSION["id"])) {
             header("Location: /sign-in");
             exit;
         }
         $query = ["_id" => $_SESSION["id"]];
-        $account = $accountManager->read($query);
+        $account = $manager->read("accounts", $query);
         if(!$account) {
             header("Location: /actions/sign-out");
             exit;

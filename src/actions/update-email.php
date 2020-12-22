@@ -14,7 +14,7 @@ while(true) {
     if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) break;
     
     $query = ["accountId" => $_SESSION["id"]];
-    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($query);
+    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     if(!$emailAuthenticationMethod) break;
     
     if($emailAuthenticationMethod["email"] === $_POST["email"]) {
@@ -26,7 +26,7 @@ while(true) {
     }
     
     $query = ["email" => $_POST["email"]];
-    $result = $emailAuthenticationMethodManager->read($query);
+    $result = $manager->read("emailAuthenticationMethods", $query);
     if($result) {
         $alert = [
             "type" => "danger",
@@ -36,7 +36,7 @@ while(true) {
     }
     
     $emailAuthenticationMethod["email"] = $_POST["email"];
-    $emailAuthenticationMethodManager->update($emailAuthenticationMethod);
+    $manager->update("emailAuthenticationMethods", $emailAuthenticationMethod);
     
     $alert = [
         "type" => "success",

@@ -15,12 +15,12 @@ while(true) {
     $name = ucfirst($_POST["provider"]);
     
     $query = ["accountId" => $_SESSION["id"], "provider" => $_POST["provider"]];
-    $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($query);
+    $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
     if(!$oauthAuthenticationMethod) break;
     
     $query = ["accountId" => $_SESSION["id"]];
-    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($query);
-    $result = $oauthAuthenticationMethodManager->read($query, true);
+    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+    $result = $manager->read("oauthAuthenticationMethods", $query, true);
     
     if(!$emailAuthenticationMethod && count($result) < 2) {
         $variables = [
@@ -34,7 +34,7 @@ while(true) {
     }
     
     $query = ["accountId" => $_SESSION["id"], "provider" => $_POST["provider"]];
-    $oauthAuthenticationMethodManager->delete($query);
+    $manager->delete("oauthAuthenticationMethods", $query);
     
     $variables = [
         "name" => $name

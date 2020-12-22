@@ -11,10 +11,10 @@ while(true) {
     if($_SERVER["REQUEST_METHOD"] !== "POST") break;
     
     $query = ["accountId" => $_SESSION["id"]];
-    $oauthAuthenticationMethodManager->delete($query, true);
-    $emailAuthenticationMethodManager->delete($query, true);
+    $manager->delete("oauthAuthenticationMethods", $query, true);
+    $manager->delete("emailAuthenticationMethods", $query, true);
     $query = ["_id" => $_SESSION["id"]];
-    $accountManager->delete($query);
+    $manager->delete("accounts", $query);
     
     $location = "/actions/sign-out";
     $alert = [

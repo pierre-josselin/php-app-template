@@ -27,7 +27,7 @@ while(true) {
     
     if(isset($_SESSION["id"])) {
         $query = ["accountId" => $_SESSION["id"], "provider" => "keyrock"];
-        $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($query);
+        $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
         
         if($oauthAuthenticationMethod) {
             $alert = [
@@ -38,7 +38,7 @@ while(true) {
         }
         
         $query = ["id" => $data["id"], "provider" => "keyrock"];
-        $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($query);
+        $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
         
         if($oauthAuthenticationMethod) {
             $alert = [
@@ -57,7 +57,7 @@ while(true) {
         if($data["email"]) {
             $oauthAuthenticationMethod["name"] = $data["email"];
         }
-        $oauthAuthenticationMethodManager->create($oauthAuthenticationMethod);
+        $manager->create("oauthAuthenticationMethods", $oauthAuthenticationMethod);
         
         $alert = [
             "type" => "success",
@@ -66,11 +66,11 @@ while(true) {
         break;
     } else {
         $query = ["id" => $data["id"], "provider" => "keyrock"];
-        $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($query);
+        $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
         
         if($oauthAuthenticationMethod) {
             $query = ["_id" => $oauthAuthenticationMethod["accountId"]];
-            $account = $accountManager->read($query);
+            $account = $manager->read("accounts", $query);
             if(!$account) break;
             
             if(!$account["enabled"]) {
@@ -96,7 +96,7 @@ while(true) {
         if($data["email"]) {
             $account["email"] = $data["email"];
         }
-        $accountManager->create($account);
+        $manager->create("accounts", $account);
         
         $oauthAuthenticationMethod = [
             "_id" => Utils::generateId(),
@@ -107,7 +107,7 @@ while(true) {
         if($data["email"]) {
             $oauthAuthenticationMethod["name"] = $data["email"];
         }
-        $oauthAuthenticationMethodManager->create($oauthAuthenticationMethod);
+        $manager->create("oauthAuthenticationMethods", $oauthAuthenticationMethod);
         
         $_SESSION["id"] = $account["_id"];
         $location = "/";

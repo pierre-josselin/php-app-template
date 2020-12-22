@@ -17,7 +17,7 @@ while(true) {
     if(mb_strlen($_POST["password"]) > 128) break;
     
     $query = ["email" => $_POST["email"]];
-    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($query);
+    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     if($emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
@@ -33,7 +33,7 @@ while(true) {
         "enabled" => true,
         "registrationTime" => time()
     ];
-    $accountManager->create($account);
+    $manager->create("accounts", $account);
     
     $emailAuthenticationMethod = [
         "_id" => Utils::generateId(),
@@ -41,7 +41,7 @@ while(true) {
         "email" => $_POST["email"],
         "passwordHash" => password_hash($_POST["password"], PASSWORD_DEFAULT)
     ];
-    $emailAuthenticationMethodManager->create($emailAuthenticationMethod);
+    $manager->create("emailAuthenticationMethods", $emailAuthenticationMethod);
     
     $_SESSION["id"] = $account["_id"];
     $location = "/";

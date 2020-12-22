@@ -16,7 +16,7 @@ while(true) {
     if(mb_strlen($_POST["new-password"]) > 128) break;
     
     $query = ["accountId" => $_SESSION["id"]];
-    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($query);
+    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     if(!$emailAuthenticationMethod) break;
     
     if(!password_verify($_POST["password"], $emailAuthenticationMethod["passwordHash"])) {
@@ -28,7 +28,7 @@ while(true) {
     }
     
     $emailAuthenticationMethod["passwordHash"] = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
-    $emailAuthenticationMethodManager->update($emailAuthenticationMethod);
+    $manager->update("emailAuthenticationMethods", $emailAuthenticationMethod);
     
     $alert = [
         "type" => "success",
