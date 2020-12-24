@@ -5,13 +5,7 @@
         <h5 class="card-header"><?= $title ?></h5>
         <div class="card-body">
             <?php require(Configuration::ROOT . "/views/pages/alerts.php"); ?>
-            <?php if(Configuration::OAUTH_AUTHENTICATION_METHODS): ?>
-                <?php foreach(array_keys(Configuration::OAUTH_AUTHENTICATION_METHODS) as $index => $key): ?>
-                    <a href="<?= htmlspecialchars(constant(strtoupper($key) . "_SIGN_IN_URL")) ?>" class="btn btn-<?= $key ?> w-100
-                    <?php if($index < count(Configuration::OAUTH_AUTHENTICATION_METHODS) - 1) echo "mb-3"; ?>"><?= ucfirst($localization->getText("continue_with")) ?> <?= ucfirst($key) ?></a>
-                <?php endforeach; ?>
-                <hr>
-            <?php endif; ?>
+            <?php require(Configuration::ROOT . "/views/pages/oauth-buttons.php"); ?>
             <form action="/actions/sign-up" method="post">
                 <div class="form-group">
                     <label for="email"><?= ucfirst($localization->getText("email")) ?></label>
@@ -29,7 +23,7 @@
                     <input id="privacy-policy" type="checkbox" class="custom-control-input" required>
                     <label for="privacy-policy" class="custom-control-label"><?= ucfirst($localization->getText("i_accept_the")) ?></a> <a href="/privacy-policy" target="_blank"><?= $localization->getText("privacy_policy") ?></a>.</label>
                 </div>
-                <button type="submit" class="btn btn-primary w-100"><?= ucfirst($localization->getText("to_sign_in")) ?></button>
+                <button type="submit" class="btn btn-primary w-100"><?= ucfirst($localization->getText("to_sign_up")) ?></button>
             </form>
         </div>
     </div>

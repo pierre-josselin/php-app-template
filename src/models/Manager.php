@@ -17,9 +17,6 @@ class Manager {
     
     public function update(string $collection, array $data) {
         global $database;
-        if(!isset($data["_id"])) {
-            return false;
-        }
         $database->$collection->updateOne(
             ["_id" => $data["_id"]],
             ['$set' => $data]

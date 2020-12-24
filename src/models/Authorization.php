@@ -2,7 +2,7 @@
 class Authorization {
     public static function mustBeSignedIn() {
         global $manager;
-        if(!isset($_SESSION["id"])) {
+        if(!$_SESSION["id"]) {
             header("Location: /sign-in");
             exit;
         }

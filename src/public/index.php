@@ -1,4 +1,6 @@
 <?php
+# PHP App Template 1.2.0
+
 require_once("../models/Configuration.php");
 
 session_set_cookie_params(Configuration::SESSION_LIFESPAN, "/");
@@ -58,7 +60,6 @@ if(isset($_SESSION["id"])) {
     $query = ["_id" => $_SESSION["id"]];
     $account = $manager->read("accounts", $query);
     define("ACCOUNT", $account);
-    unset($account);
 }
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));

@@ -38,7 +38,6 @@ address: address
 authentication: authentication
 authentication_methods: authentication methods
 birth_date: birth date
-change_password: change password
 city: city
 close: close
 continue_with: continue with
@@ -73,4 +72,5 @@ sign_up_date: sign up date
 to_sign_in: sign in
 to_sign_up: sign up
 unlink: unlink
-update: update
+update_email: update email
+update_password: update password

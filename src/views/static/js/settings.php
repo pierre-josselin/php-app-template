@@ -2,8 +2,10 @@
 header("Content-Type: application/json");
 ?>
 var settings = {
-    unlinkOauth: function(provider) {
-        utils.request("/actions/unlink-oauth", "post", {"provider": provider});
+    unlinkOAuth: function(provider) {
+        var url = "/actions/unlink-oauth";
+        var data = {"provider": provider};
+        utils.request(url, "post", data);
     },
     deleteAccount: function() {
         bootbox.confirm({

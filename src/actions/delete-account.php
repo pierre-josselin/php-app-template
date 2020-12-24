@@ -13,6 +13,7 @@ while(true) {
     $query = ["accountId" => $_SESSION["id"]];
     $manager->delete("oauthAuthenticationMethods", $query, true);
     $manager->delete("emailAuthenticationMethods", $query, true);
+    
     $query = ["_id" => $_SESSION["id"]];
     $manager->delete("accounts", $query);
     

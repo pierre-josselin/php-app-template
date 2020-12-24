@@ -38,7 +38,6 @@ address: adresse
 authentication: authentification
 authentication_methods: méthodes d'authentification
 birth_date: date de naissance
-change_password: modifier le mot de passe
 city: ville
 close: fermer
 continue_with: continuer avec
@@ -73,4 +72,5 @@ sign_up_date: date d'inscription
 to_sign_in: se connecter
 to_sign_up: s'inscrire
 unlink: déconnecter
-update: mettre à jour
+update_email: mettre à jour l'adresse e-mail
+update_password: mettre à jour le mot de passe
