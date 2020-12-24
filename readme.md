@@ -54,6 +54,7 @@ class Configuration {
         "/actions/update-personal-informations" => "/actions/update-personal-informations.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
+        "/dashboard" => "/controllers/dashboard.php",
         "/file" => "/controllers/file.php",
         "/privacy-policy" => "/controllers/privacy-policy.php",
         "/settings" => "/controllers/settings.php",
