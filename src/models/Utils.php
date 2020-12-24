@@ -26,7 +26,7 @@ class Utils {
         return @file_get_contents($url, false, $context);
     }
     
-    public static function checkDateFormat($date, $format = "Y-m-d") {
+    public static function checkDateFormat($date, string $format = "Y-m-d") {
         $dateTime = DateTime::createFromFormat($format, $date);
         return $dateTime && $dateTime->format($format) === $date;
     }
@@ -40,6 +40,17 @@ class Utils {
             return $array;
         } else {
             return $object;
+        }
+    }
+    
+    public static function truncateText($text, int $length, string $suffix = "") {
+        if(!$text) {
+            return "";
+        }
+        if(mb_strlen($text) > $length) {
+            return mb_substr($text, 0, $length) . $suffix;
+        } else {
+            return $text;
         }
     }
 }

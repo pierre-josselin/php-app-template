@@ -5,6 +5,10 @@ body {
     background-color: #fbfbfb;
 }
 
+table {
+    white-space: nowrap;
+}
+
 .form {
     max-width: 550px;
 }

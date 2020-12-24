@@ -32,8 +32,11 @@
                             }
                         ?>
                     </span>
-                    <a class="text-light mr-3" href="/settings"><i class="fas fa-cog"></i></a>
-                    <a class="text-light" href="/actions/sign-out"><i class="fas fa-sign-out-alt"></i></a>
+                    <?php if(constant("ACCOUNT")["type"] === "admin"): ?>
+                        <a class="text-light mr-3" href="/dashboard" title="<?= ucfirst($localization->getText("dashboard")) ?>"><i class="fas fa-shield-alt"></i></a>
+                    <?php endif; ?>
+                    <a class="text-light mr-3" href="/settings" title="<?= ucfirst($localization->getText("settings")) ?>"><i class="fas fa-cog"></i></a>
+                    <a class="text-light" href="/actions/sign-out" title="<?= ucfirst($localization->getText("sign_out")) ?>"><i class="fas fa-sign-out-alt"></i></a>
                 <?php else: ?>
                     <div class="ml-auto">
                         <a href="/sign-in" class="btn btn-sm btn<?php if(constant("PATH") !== "/sign-in") echo "-outline"; ?>-light"><?= $localization->getText("sign_in") ?></a>

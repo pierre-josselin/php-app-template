@@ -1,4 +1,5 @@
 # Titles
+title_dashboard: tableau de bord
 title_home: accueil
 title_privacy_policy: politique de confidentialité
 title_settings: paramètres
@@ -6,8 +7,10 @@ title_sign_in: connexion
 title_sign_up: inscription
 
 # Alerts
+alert_access_denied: Vous n'avez pas l'autorisation d'accéder à cette page.
 alert_account_created: Le compte a bien été créé.
 alert_account_deleted: Le compte a bien été supprimé.
+alert_account_disabled: Votre compte est désactivé.
 alert_authentication_method_deleted: "{name} a bien été retiré de ce compte."
 alert_disabled_account: Ce compte est désactivé.
 alert_email_unavailable: L'adresse e-mail est déjà utilisée.
@@ -34,7 +37,9 @@ dialog_passwords_not_match: Les mots de passe ne correspondent pas.
 # Global
 account: compte
 account_details: détails du compte
+accounts: comptes
 address: adresse
+admin: administrateur
 authentication: authentification
 authentication_methods: méthodes d'authentification
 birth_date: date de naissance
@@ -43,9 +48,11 @@ close: fermer
 continue_with: continuer avec
 country: pays
 current_password: mot de passe actuel
+dashboard: tableau de bord
 delete_account: supprimer le compte
 edit: modifier
 email: adresse e-mail
+enabled: actif
 female: femme
 first_name: prénom
 gender: genre
@@ -66,11 +73,15 @@ privacy_policy: politique de confidentialité
 save: enregistrer
 select_file: sélectionner un fichier
 send: envoyer
+settings: paramètres
 sign_in: connexion
+sign_out: déconnexion
 sign_up: inscription
 sign_up_date: date d'inscription
 to_sign_in: se connecter
 to_sign_up: s'inscrire
+type: type
 unlink: déconnecter
 update_email: mettre à jour l'adresse e-mail
 update_password: mettre à jour le mot de passe
+user: utilisateur

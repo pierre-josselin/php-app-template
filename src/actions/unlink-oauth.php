@@ -20,7 +20,7 @@ while(true) {
     
     $query = ["accountId" => $_SESSION["id"]];
     $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
-    $result = $manager->read("oauthAuthenticationMethods", $query, true);
+    $result = $manager->read("oauthAuthenticationMethods", $query, [], true);
     
     if(!$emailAuthenticationMethod && count($result) < 2) {
         $variables = [

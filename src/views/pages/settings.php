@@ -152,7 +152,7 @@
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("last_name")) ?></dt>
                                 <dd class="col-lg-9 text-monospace mb-3"><?= ($account["lastName"] ? htmlentities($account["lastName"]) : "-") ?></dd>
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("gender")) ?></dt>
-                                <dd class="col-lg-9 text-monospace mb-3"><?= ($account["gender"] ? $genders[$account["gender"]] : "-") ?></dd>
+                                <dd class="col-lg-9 text-monospace mb-3"><?= ($account["gender"] ? ucfirst($localization->getText($account["gender"])) : "-") ?></dd>
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("email")) ?></dt>
                                 <dd class="col-lg-9 text-monospace mb-3"><?= ($account["email"] ? $account["email"] : "-") ?></dd>
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("phone")) ?></dt>

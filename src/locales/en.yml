@@ -1,4 +1,5 @@
 # Titles
+title_dashboard: dashboard
 title_home: home
 title_privacy_policy: privacy policy
 title_settings: settings
@@ -6,8 +7,10 @@ title_sign_in: sign in
 title_sign_up: sign up
 
 # Alerts
+alert_access_denied: You do not have permission to access this page.
 alert_account_created: The account has been successfully created.
 alert_account_deleted: The account has been deleted.
+alert_account_disabled: Your account is disabled.
 alert_authentication_method_deleted: "{name} has been successfully removed from this account."
 alert_disabled_account: This account is disabled.
 alert_email_unavailable: The email address unavailable.
@@ -34,7 +37,9 @@ dialog_passwords_not_match: The passwords do not match.
 # Global
 account: account
 account_details: account details
+accounts: accounts
 address: address
+admin: administrator
 authentication: authentication
 authentication_methods: authentication methods
 birth_date: birth date
@@ -43,9 +48,11 @@ close: close
 continue_with: continue with
 country: country
 current_password: current password
+dashboard: dashboard
 delete_account: delete account
 edit: edit
 email: email
+enabled: enabled
 female: female
 first_name: first name
 gender: gender
@@ -66,11 +73,15 @@ privacy_policy: privacy policy
 save: save
 select_file: select file
 send: send
+settings: settings
 sign_in: sign in
+sign_out: sign out
 sign_up: sign up
 sign_up_date: sign up date
 to_sign_in: sign in
 to_sign_up: sign up
+type: type
 unlink: unlink
 update_email: update email
 update_password: update password
+user: user

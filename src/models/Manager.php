@@ -5,12 +5,12 @@ class Manager {
         $database->$collection->insertOne($data);
     }
     
-    public function read(string $collection, array $query, bool $multiple = false) {
+    public function read(string $collection, array $query, array $options = [], bool $multiple = false) {
         global $database;
         if($multiple) {
-            $result = $database->$collection->find($query)->toArray();
+            $result = $database->$collection->find($query, $options)->toArray();
         } else {
-            $result = $database->$collection->findOne($query);
+            $result = $database->$collection->findOne($query, $options);
         }
         return Utils::objectToArray($result);
     }
