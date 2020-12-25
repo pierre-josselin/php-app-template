@@ -11,6 +11,7 @@ echo "extension=mongodb.so" >> /etc/php/7.0/apache2/php.ini
 cd /var/www/${SERVER_NAME}
 composer require mongodb/mongodb
 composer require facebook/graph-sdk
+composer require phpmailer/phpmailer
 cat >> /etc/apache2/sites-available/${SERVER_NAME}.conf <<END
 <Directory /var/www/${SERVER_NAME}/public>
     RewriteEngine On

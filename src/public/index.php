@@ -56,6 +56,10 @@ if(!isset($_SESSION["alerts"])) {
 $manager = new Manager();
 $fileManager = new FileManager();
 
+if(Configuration::SMTP) {
+    $emailManager = new EmailManager();
+}
+
 if(isset($_SESSION["id"])) {
     $query = ["_id" => $_SESSION["id"]];
     $account = $manager->read("accounts", $query);

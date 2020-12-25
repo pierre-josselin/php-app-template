@@ -78,6 +78,14 @@ class Configuration {
             "redirectUri" => "https://example.com/callbacks/keyrock"
         ]
     ];
+    const SMTP = [
+        "host" => "",
+        "port" => 0,
+        "username" => "",
+        "password" => "",
+        "from" => "",
+        "fromName" => ""
+    ];
 }
 ```
 
