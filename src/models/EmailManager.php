@@ -15,7 +15,7 @@ class EmailManager {
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->setFrom(Configuration::SMTP["from"], Configuration::SMTP["fromName"]);
             $mail->addAddress($email["to"]);
-            $mail->isHTML($email["isHTML"];
+            $mail->isHTML($email["isHTML"]);
             $mail->CharSet = "UTF-8";
             $mail->Subject = $email["subject"];
             $mail->Body = $email["body"];
