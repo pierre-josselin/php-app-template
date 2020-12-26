@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION["id"])) {
     Authorization::mustBeSignedIn();
-    $location = "/settings";
+    $location = "/settings?tab=authentication";
 } else {
     Authorization::mustNotBeSignedIn();
     $location = "/sign-in";

@@ -13,4 +13,9 @@ foreach($result as $key => $value) {
     $oauthAuthenticationMethods[$value["provider"]] = $value;
 }
 
+$tab = "account";
+if(isset($_GET["tab"])) {
+    $tab = $_GET["tab"];
+}
+
 require(Configuration::ROOT . "/views/pages/settings.php");

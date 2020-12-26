@@ -1,7 +1,7 @@
 <?php
 Authorization::mustBeSignedIn();
 
-$location = "/settings";
+$location = "/settings?tab=authentication";
 $alert = [
     "type" => "danger",
     "message" => $localization->getText("alert_error")

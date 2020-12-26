@@ -130,13 +130,15 @@
             <div class="row">
                 <div class="col-md-3 mb-4">
                     <div class="nav flex-column nav-pills">
-                        <a class="nav-link active" data-toggle="pill" href="#settings-account-tab"><?= ucfirst($localization->getText("account")) ?></a>
-                        <a class="nav-link" data-toggle="pill" href="#settings-authentication-tab"><?= ucfirst($localization->getText("authentication")) ?></a>
+                        <a class="nav-link <?= ($tab === "account" ? "active" : "") ?>"
+                        data-toggle="pill" href="#settings-account-tab"><?= ucfirst($localization->getText("account")) ?></a>
+                        <a class="nav-link <?= ($tab === "authentication" ? "active" : "") ?>"
+                        data-toggle="pill" href="#settings-authentication-tab"><?= ucfirst($localization->getText("authentication")) ?></a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content">
-                        <div id="settings-account-tab" class="tab-pane active">
+                        <div id="settings-account-tab" class="tab-pane <?= ($tab === "account" ? "active" : "") ?>">
                             <h5><?= ucfirst($localization->getText("account_details")) ?></h5><hr>
                             <dl class="row">
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("identifier")) ?></dt>
@@ -169,7 +171,7 @@
                             </dl>
                             <a href="javascript: settings.deleteAccount();" class="text-danger mt-4"><?= ucfirst($localization->getText("delete_account")) ?></a>
                         </div>
-                        <div id="settings-authentication-tab" class="tab-pane">
+                        <div id="settings-authentication-tab" class="tab-pane <?= ($tab === "authentication" ? "active" : "") ?>">
                             <h5><?= ucfirst($localization->getText("authentication_methods")) ?></h5><hr>
                             <dl class="row">
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("email")) ?></dt>
