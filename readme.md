@@ -123,6 +123,7 @@ class Configuration {
 
 ## Release history
 
+- [1.2.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.2.0) - 2020-12-26
 - [1.1.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.1.0) - 2020-12-23
 - [1.0.0](https://github.com/pierre-josselin/php-app-template/releases/tag/1.0.0) - 2020-11-22
 
