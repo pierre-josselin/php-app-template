@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div id="navbar" class="collapse navbar-collapse">
-                <?php if(isset($_SESSION["id"])): ?>
+                <?php if(constant("ACCOUNT_ID")): ?>
                     <ul class="navbar-nav mr-auto">
                         <?php foreach(Configuration::NAVIGATION as $path => $id): ?>
                             <li class="nav-item <?php if(constant("PATH") === $path) echo "active"; ?>">

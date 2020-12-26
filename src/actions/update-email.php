@@ -13,7 +13,7 @@ while(true) {
     if(!is_string($_POST["email"])) break;
     if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) break;
     
-    $query = ["accountId" => $_SESSION["id"]];
+    $query = ["accountId" => constant("ACCOUNT_ID")];
     $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     if(!$emailAuthenticationMethod) break;
     

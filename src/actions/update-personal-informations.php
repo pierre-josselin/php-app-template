@@ -44,7 +44,7 @@ while(true) {
         }
     }
     
-    $query = ["_id" => $_SESSION["id"]];
+    $query = ["_id" => constant("ACCOUNT_ID")];
     $account = $manager->read("accounts", $query);
     $account["firstName"] = $_POST["first-name"];
     $account["lastName"] = $_POST["last-name"];

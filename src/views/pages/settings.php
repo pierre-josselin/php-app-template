@@ -134,6 +134,8 @@
                         data-toggle="pill" href="#settings-account-tab"><?= ucfirst($localization->getText("account")) ?></a>
                         <a class="nav-link <?= ($tab === "authentication" ? "active" : "") ?>"
                         data-toggle="pill" href="#settings-authentication-tab"><?= ucfirst($localization->getText("authentication")) ?></a>
+                        <a class="nav-link <?= ($tab === "sessions" ? "active" : "") ?>"
+                        data-toggle="pill" href="#settings-sessions-tab"><?= ucfirst($localization->getText("sessions")) ?></a>
                     </div>
                 </div>
                 <div class="col-md-9">
@@ -197,6 +199,38 @@
                                     </dd>
                                 <?php endforeach; ?>
                             </dl>
+                        </div>
+                        <div id="settings-sessions-tab" class="tab-pane <?= ($tab === "sessions" ? "active" : "") ?>">
+                            <h5><?= ucfirst($localization->getText("sessions")) ?></h5><hr>
+                            <div class="mb-2"><small><?= $localization->getText("dialog_delete_current_session") ?></small></div>
+                            <div class="mb-3"><a class="btn btn-outline-danger btn-sm" href="javascript: settings.deleteAllSessions();"><?= ucfirst($localization->getText("delete_all_sessions")) ?></a></div>
+                            <div style="max-height: 800px; overflow-y: auto;">
+                                <?php foreach($sessions as $index => $session): ?>
+                                    <div class="card border-<?= ($session["badge"] ? $session["badge"]["type"] : "dark") ?>
+                                    <?= ($index < count($sessions) - 1 ? "mb-3" : "") ?>">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><span class="text-monospace"><?= substr($session["_id"], 0, 16) ?></span><a style="float: right;" href='javascript: settings.deleteSession(<?= json_encode($session["_id"]) ?>);'><i class="fas fa-times text-dark"></i></a></h5>
+                                            <dl class="row mb-0">
+                                                <dt class="col-sm-3"><?= ucfirst($localization->getText("location")) ?></dt>
+                                                <dd class="col-sm-9">
+                                                    <?php if($session["ipLocation"]): ?>
+                                                        <span data-toggle="tooltip" data-placement="top" title="<?= $session["ip"] ?>"><?= $session["ipLocation"]["city"] ?>, <?= $session["ipLocation"]["postalCode"] ?> <?= $session["ipLocation"]["country"] ?></span>
+                                                    <?php else: ?>
+                                                        <?= $session["ip"] ?>
+                                                    <?php endif; ?>
+                                                </dd>
+                                                <dt class="col-sm-3"><?= ucfirst($localization->getText("last_access")) ?></dt>
+                                                <dd class="col-sm-9"><?= date("d/m/Y H:i:s", $session["updateTime"]) ?></dd>
+                                                <dt class="col-sm-3"><?= ucfirst($localization->getText("expiration")) ?></dt>
+                                                <dd class="col-sm-9"><?= date("d/m/Y H:i:s", $session["expirationTime"]) ?></dd>
+                                            </dl>
+                                            <?php if($session["badge"]): ?>
+                                                <span class="badge badge-<?= $session["badge"]["type"] ?>"><?= $session["badge"]["name"] ?></span>
+                                            <?php endif; ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>

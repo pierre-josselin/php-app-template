@@ -1,12 +1,8 @@
 <?php
-$alerts = null;
-if(isset($_SESSION["alerts"])) {
-    $alerts = $_SESSION["alerts"];
+if(constant("SESSION_ID")) {
+    $query = ["_id" => constant("SESSION_ID")];
+    $manager->delete("sessions", $query);
 }
-session_destroy();
-if(!is_null($alerts)) {
-    session_start();
-    $_SESSION["alerts"] = $alerts;
-}
+setcookie("session", "", time() - 3600, "/");
 header("Location: /sign-in");
 exit;

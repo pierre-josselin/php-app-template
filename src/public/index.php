@@ -3,7 +3,6 @@
 
 require_once("../models/Configuration.php");
 
-session_set_cookie_params(Configuration::SESSION_LIFESPAN, "/");
 session_start();
 
 spl_autoload_register(function($class) {
@@ -60,8 +59,43 @@ if(Configuration::SMTP) {
     $emailManager = new EmailManager();
 }
 
-if(isset($_SESSION["id"])) {
-    $query = ["_id" => $_SESSION["id"]];
+$success = false;
+while(true) {
+    if(!isset($_COOKIE["session"])) break;
+    if(!is_string($_COOKIE["session"])) break;
+    if(!$_COOKIE["session"]) break;
+    
+    $query = ["_id" => $_COOKIE["session"]];
+    $session = $manager->read("sessions", $query);
+    
+    if(!$session) {
+        setcookie("session", "", time() - 3600, "/");
+        break;
+    }
+    
+    if($session["expirationTime"] < time()) {
+        $query = ["_id" => $session["_id"]];
+        $manager->delete("sessions", $query);
+        break;
+    }
+    
+    $session["ip"] = Utils::getIp();
+    $session["updateTime"] = time();
+    $manager->update("sessions", $session);
+    
+    define("SESSION_ID", $session["_id"]);
+    define("ACCOUNT_ID", $session["accountId"]);
+    $success = true;
+    break;
+}
+
+if(!$success) {
+    define("SESSION_ID", false);
+    define("ACCOUNT_ID", false);
+}
+
+if(constant("ACCOUNT_ID")) {
+    $query = ["_id" => constant("ACCOUNT_ID")];
     $account = $manager->read("accounts", $query);
     define("ACCOUNT", $account);
 }

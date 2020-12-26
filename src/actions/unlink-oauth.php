@@ -14,11 +14,11 @@ while(true) {
     if(!isset(Configuration::OAUTH_AUTHENTICATION_METHODS[$_POST["provider"]])) break;
     $name = ucfirst($_POST["provider"]);
     
-    $query = ["accountId" => $_SESSION["id"], "provider" => $_POST["provider"]];
+    $query = ["accountId" => constant("ACCOUNT_ID"), "provider" => $_POST["provider"]];
     $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
     if(!$oauthAuthenticationMethod) break;
     
-    $query = ["accountId" => $_SESSION["id"]];
+    $query = ["accountId" => constant("ACCOUNT_ID")];
     $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     $result = $manager->read("oauthAuthenticationMethods", $query, [], true);
     
@@ -33,7 +33,7 @@ while(true) {
         break;
     }
     
-    $query = ["accountId" => $_SESSION["id"], "provider" => $_POST["provider"]];
+    $query = ["accountId" => constant("ACCOUNT_ID"), "provider" => $_POST["provider"]];
     $manager->delete("oauthAuthenticationMethods", $query);
     
     $variables = [

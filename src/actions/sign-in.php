@@ -43,7 +43,16 @@ while(true) {
         break;
     }
     
-    $_SESSION["id"] = $account["_id"];
+    $session = [
+        "_id" => Utils::generateId(512),
+        "accountId" => $account["_id"],
+        "ip" => Utils::getIp(),
+        "creationTime" => time(),
+        "updateTime" => time(),
+        "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
+    ];
+    $manager->create("sessions", $session);
+    setcookie("session", $session["_id"], $session["expirationTime"], "/");
     $location = "/";
     $alert = false;
     break;

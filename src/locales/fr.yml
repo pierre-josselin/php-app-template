@@ -11,6 +11,7 @@ alert_access_denied: Vous n'avez pas l'autorisation d'accéder à cette page.
 alert_account_created: Le compte a bien été créé.
 alert_account_deleted: Le compte a bien été supprimé.
 alert_account_disabled: Votre compte est désactivé.
+alert_all_sessions_deleted: Toutes les sessions ont bien été supprimées.
 alert_authentication_method_deleted: "{name} a bien été retiré de ce compte."
 alert_disabled_account: Ce compte est désactivé.
 alert_email_unavailable: L'adresse e-mail est déjà utilisée.
@@ -28,10 +29,12 @@ alert_only_authentication_method: "Impossible de retirer {name} car c'est la seu
 alert_password_updated: Le mot de passe a bien été mise à jour.
 alert_personal_informations_updated: Les informations personnelles ont bien été enregistrées.
 alert_same_email: L'adresse e-mail est identique.
+alert_session_deleted: La session a bien été supprimée.
 alert_unknown_email: L'adresse e-mail n'existe pas.
 
 # Dialogs
 dialog_account_deletion: La suppression du compte est définitive.<br>Continuer ?
+dialog_delete_current_session: Si vous fermez la session actuelle, vous serez déconnecté.
 dialog_passwords_not_match: Les mots de passe ne correspondent pas.
 
 # Global
@@ -48,19 +51,26 @@ close: fermer
 continue_with: continuer avec
 country: pays
 current_password: mot de passe actuel
+current_session: session actuelle
 dashboard: tableau de bord
 delete_account: supprimer le compte
+delete_all_sessions: déconnecter toutes les sessions
 edit: modifier
 email: adresse e-mail
 enabled: actif
+expiration: expiration
+expired_session: session expirée
 female: femme
 first_name: prénom
 gender: genre
 home: accueil
 i_accept_the: j'accepte la
 identifier: identifiant
+in_use_session: session en cours d'utilisation
+last_access: dernier accès
 last_name: nom
 link: connecter
+location: emplacement
 male: homme
 new_password: nouveau mot de passe
 new_password_confirmation: confirmation du nouveau mot de passe
@@ -73,6 +83,7 @@ privacy_policy: politique de confidentialité
 save: enregistrer
 select_file: sélectionner un fichier
 send: envoyer
+sessions: sessions
 settings: paramètres
 sign_in: connexion
 sign_out: déconnexion
@@ -82,6 +93,7 @@ to_sign_in: se connecter
 to_sign_up: s'inscrire
 type: type
 unlink: déconnecter
+unused_session: session inutilisée
 update_email: mettre à jour l'adresse e-mail
 update_password: mettre à jour le mot de passe
 user: utilisateur

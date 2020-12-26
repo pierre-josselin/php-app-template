@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION["id"])) {
+if(constant("ACCOUNT_ID")) {
     Authorization::mustBeSignedIn();
     $location = "/settings?tab=authentication";
 } else {
@@ -25,8 +25,8 @@ while(true) {
     if(!isset($data["id"])) break;
     if(!$data["id"]) break;
     
-    if(isset($_SESSION["id"])) {
-        $query = ["accountId" => $_SESSION["id"], "provider" => "keyrock"];
+    if(constant("ACCOUNT_ID")) {
+        $query = ["accountId" => constant("ACCOUNT_ID"), "provider" => "keyrock"];
         $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
         
         if($oauthAuthenticationMethod) {
@@ -50,7 +50,7 @@ while(true) {
         
         $oauthAuthenticationMethod = [
             "_id" => Utils::generateId(),
-            "accountId" => $_SESSION["id"],
+            "accountId" => constant("ACCOUNT_ID"),
             "id" => $data["id"],
             "provider" => "keyrock"
         ];
@@ -81,7 +81,16 @@ while(true) {
                 break;
             }
             
-            $_SESSION["id"] = $account["_id"];
+            $session = [
+                "_id" => Utils::generateId(512),
+                "accountId" => $account["_id"],
+                "ip" => Utils::getIp(),
+                "creationTime" => time(),
+                "updateTime" => time(),
+                "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
+            ];
+            $manager->create("sessions", $session);
+            setcookie("session", $session["_id"], $session["expirationTime"], "/");
             $location = "/";
             $alert = false;
             break;
@@ -109,7 +118,16 @@ while(true) {
         }
         $manager->create("oauthAuthenticationMethods", $oauthAuthenticationMethod);
         
-        $_SESSION["id"] = $account["_id"];
+        $session = [
+            "_id" => Utils::generateId(512),
+            "accountId" => $account["_id"],
+            "ip" => Utils::getIp(),
+            "creationTime" => time(),
+            "updateTime" => time(),
+            "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
+        ];
+        $manager->create("sessions", $session);
+        setcookie("session", $session["_id"], $session["expirationTime"], "/");
         $location = "/";
         $alert = [
             "type" => "success",

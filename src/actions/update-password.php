@@ -15,7 +15,7 @@ while(true) {
     if(mb_strlen($_POST["new-password"]) < 6) break;
     if(mb_strlen($_POST["new-password"]) > 128) break;
     
-    $query = ["accountId" => $_SESSION["id"]];
+    $query = ["accountId" => constant("ACCOUNT_ID")];
     $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
     if(!$emailAuthenticationMethod) break;
     

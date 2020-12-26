@@ -17,5 +17,14 @@ var settings = {
                 utils.request(url, "post");
             }
         });
+    },
+    deleteSession: function(id) {
+        var url = "/actions/delete-session";
+        var data = {"id": id};
+        utils.request(url, "post", data);
+    },
+    deleteAllSessions: function() {
+        var url = "/actions/delete-all-sessions";
+        utils.request(url, "post");
     }
 }
