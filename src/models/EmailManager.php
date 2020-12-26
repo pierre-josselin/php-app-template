@@ -3,7 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 class EmailManager {
-    public function send(Email $email) {
+    public function send(array $email) {
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
@@ -14,11 +14,11 @@ class EmailManager {
             $mail->Password = Configuration::SMTP["password"];
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->setFrom(Configuration::SMTP["from"], Configuration::SMTP["fromName"]);
-            $mail->addAddress($email->getTo());
-            $mail->isHTML($email->getHTML());
+            $mail->addAddress($email["to"]);
+            $mail->isHTML($email["isHTML"];
             $mail->CharSet = "UTF-8";
-            $mail->Subject = $email->getSubject();
-            $mail->Body = $email->getBody();
+            $mail->Subject = $email["subject"];
+            $mail->Body = $email["body"];
             $mail->send();
             return true;
         } catch(Exception $exception) {
