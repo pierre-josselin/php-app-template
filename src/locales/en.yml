@@ -28,6 +28,7 @@ alert_keyrock_unavailable: This Keyrock account is already associated with anoth
 alert_only_authentication_method: "Cannot remove {name} because it is the only authentication method associated with the account."
 alert_password_updated: The password has been successfully updated.
 alert_personal_informations_updated: Personal information has been saved.
+alert_profile_picture_updated: The profile picture has been successfully updated.
 alert_same_email: The e-mail address is the same.
 alert_session_deleted: The session has been deleted.
 alert_unknown_email: The email address does not exist.
@@ -46,6 +47,8 @@ admin: administrator
 authentication: authentication
 authentication_methods: authentication methods
 birth_date: birth date
+browse: browse
+choose_picture: choose a picture
 city: city
 close: close
 continue_with: continue with
@@ -80,6 +83,7 @@ personal_informations: personal informations
 phone: phone
 postal_code: postal code
 privacy_policy: privacy policy
+profile_picture: profile picture
 save: save
 select_file: select file
 send: send

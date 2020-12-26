@@ -132,6 +132,8 @@
                     <div class="nav flex-column nav-pills">
                         <a class="nav-link <?= ($tab === "account" ? "active" : "") ?>"
                         data-toggle="pill" href="#settings-account-tab"><?= ucfirst($localization->getText("account")) ?></a>
+                        <a class="nav-link <?= ($tab === "profile-picture" ? "active" : "") ?>"
+                        data-toggle="pill" href="#settings-profile-picture-tab"><?= ucfirst($localization->getText("profile_picture")) ?></a>
                         <a class="nav-link <?= ($tab === "authentication" ? "active" : "") ?>"
                         data-toggle="pill" href="#settings-authentication-tab"><?= ucfirst($localization->getText("authentication")) ?></a>
                         <a class="nav-link <?= ($tab === "sessions" ? "active" : "") ?>"
@@ -172,6 +174,22 @@
                                 </dd>
                             </dl>
                             <a href="javascript: settings.deleteAccount();" class="text-danger mt-4"><?= ucfirst($localization->getText("delete_account")) ?></a>
+                        </div>
+                        <div id="settings-profile-picture-tab" class="tab-pane <?= ($tab === "profile-picture" ? "active" : "") ?>">
+                            <h5><?= ucfirst($localization->getText("profile_picture")) ?></h5><hr>
+                            <?php if($account["picture"]): ?>
+                                <a href="/file?id=<?= $account["picture"] ?>" target="_blank">
+                                    <img style="max-width: 300px;" src="/file?id=<?= $account["picture"] ?>" class="border border-primary w-100 mb-3">
+                                </a>
+                            <?php endif; ?>
+                            <form action="/actions/update-profile-picture" method="post" enctype="multipart/form-data">
+                                <div class="custom-file mb-3">
+                                    <input id="picture" type="file" name="profile-picture" class="custom-file-input"
+                                    accept="image/jpeg, image/png, image/gif"required>
+                                    <label style="max-width: 300px;" for="picture" class="custom-file-label text-truncate"><?= ucfirst($localization->getText("choose_picture")) ?></label>
+                                </div>
+                                <button type="submit" class="btn btn-primary"><?= ucfirst($localization->getText("save")) ?></button>
+                            </form>
                         </div>
                         <div id="settings-authentication-tab" class="tab-pane <?= ($tab === "authentication" ? "active" : "") ?>">
                             <h5><?= ucfirst($localization->getText("authentication_methods")) ?></h5><hr>

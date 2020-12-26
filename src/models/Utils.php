@@ -87,4 +87,60 @@ class Utils {
             "location" => (isset($data["loc"]) ? array_map("floatval", explode(",", $data["loc"])) : false)
         ];
     }
+    
+    public static function resizeImage(string $path, string $inputType, string $outputType, int $width, int $height = -1) {
+        $image = false;
+        switch($inputType) {
+            case "image/jpeg": {
+                $image = imagecreatefromjpeg($path);
+                break;
+            }
+            case "image/png": {
+                $image = imagecreatefrompng($path);
+                break;
+            }
+            case "image/gif": {
+                $image = imagecreatefromgif($path);
+                break;
+            }
+            default: {
+                return false;
+            }
+        }
+        if(!$image) {
+            return false;
+        }
+        $image = imagescale($image, $width, $height);
+        $content = false;
+        switch($outputType) {
+            case "image/jpeg": {
+                ob_clean();
+                ob_start();
+                imagejpeg($image);
+                $content = ob_get_contents();
+                ob_end_clean();
+                break;
+            }
+            case "image/png": {
+                ob_clean();
+                ob_start();
+                imagepng($image);
+                $content = ob_get_contents();
+                ob_end_clean();
+                break;
+            }
+            case "image/gif": {
+                ob_clean();
+                ob_start();
+                imagegif($image);
+                $content = ob_get_contents();
+                ob_end_clean();
+                break;
+            }
+            default: {
+                return false;
+            }
+        }
+        return $content;
+    }
 }

@@ -23,7 +23,7 @@
                             </li>
                         <?php endforeach; ?>
                     </ul>
-                    <span class="text-light mr-4">
+                    <span class="text-light mr-3">
                         <?php
                             if(constant("ACCOUNT")["firstName"] || constant("ACCOUNT")["lastName"]) {
                                 echo htmlentities(constant("ACCOUNT")["firstName"] . " " . constant("ACCOUNT")["lastName"]);
@@ -32,6 +32,9 @@
                             }
                         ?>
                     </span>
+                    <?php if(constant("ACCOUNT")["picture"]): ?>
+                        <div style="width: 32px; height: 32px; background-image: url('/file?id=<?= constant("ACCOUNT")["picture"] ?>');" class="profile-picture rounded-circle border border-white mr-3"></div>
+                    <?php endif; ?>
                     <?php if(constant("ACCOUNT")["type"] === "admin"): ?>
                         <a class="text-light mr-3" href="/dashboard" title="<?= ucfirst($localization->getText("dashboard")) ?>"><i class="fas fa-shield-alt"></i></a>
                     <?php endif; ?>

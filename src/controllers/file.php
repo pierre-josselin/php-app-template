@@ -8,7 +8,10 @@ while(true) {
     $file = $fileManager->read($query);
     if(!$file) break;
     
-    $name = rawurlencode($file["name"]);
+    $name = $file["_id"];
+    if($file["name"]) {
+        $name = rawurlencode($file["name"]);
+    }
     $contentDisposition = (isset($_GET["download"]) ? "attachment" : "inline");
     header("Content-Type: {$file["type"]}");
     header("Content-Disposition: {$contentDisposition}; filename=\"{$name}\"");

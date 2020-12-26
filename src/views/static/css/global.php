@@ -13,6 +13,11 @@ table {
     max-width: 550px;
 }
 
+.profile-picture {
+    background-size: cover;
+    background-position: center;
+}
+
 .btn-facebook {
     color: white;
     background-color: #4267b2;
@@ -31,4 +36,8 @@ table {
 .btn-keyrock:hover {
     color: white;
     background-color: #e2a407;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+    content: <?= json_encode(ucfirst($localization->getText("browse"))) ?>;
 }

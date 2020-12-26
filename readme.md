@@ -52,6 +52,7 @@ class Configuration {
         "/actions/update-email" => "/actions/update-email.php",
         "/actions/update-password" => "/actions/update-password.php",
         "/actions/update-personal-informations" => "/actions/update-personal-informations.php",
+        "/actions/update-profile-picture" => "/actions/update-profile-picture.php",
         "/callbacks/facebook" => "/callbacks/facebook.php",
         "/callbacks/keyrock" => "/callbacks/keyrock.php",
         "/dashboard" => "/controllers/dashboard.php",
@@ -99,6 +100,7 @@ class Configuration {
 - Personal informations (name, gender, address...)
 - File storage system
 - Bootswatch styles
+- Admin dashboard
 - Localization
 
 ## Supported OAuth authentication methods

@@ -28,6 +28,7 @@ alert_keyrock_unavailable: Ce compte Keyrock est déjà associé à un autre com
 alert_only_authentication_method: "Impossible de retirer {name} car c'est la seule méthode d'authentification associée au compte."
 alert_password_updated: Le mot de passe a bien été mise à jour.
 alert_personal_informations_updated: Les informations personnelles ont bien été enregistrées.
+alert_profile_picture_updated: La photo de profil a bien été mise a jour.
 alert_same_email: L'adresse e-mail est identique.
 alert_session_deleted: La session a bien été supprimée.
 alert_unknown_email: L'adresse e-mail n'existe pas.
@@ -46,6 +47,8 @@ admin: administrateur
 authentication: authentification
 authentication_methods: méthodes d'authentification
 birth_date: date de naissance
+browse: parcourir
+choose_picture: choisir une image
 city: ville
 close: fermer
 continue_with: continuer avec
@@ -80,6 +83,7 @@ personal_informations: informations personnelles
 phone: numéro de téléphone
 postal_code: code postal
 privacy_policy: politique de confidentialité
+profile_picture: photo de profil
 save: enregistrer
 select_file: sélectionner un fichier
 send: envoyer
