@@ -1,7 +1,7 @@
 <?php
 if(constant("ACCOUNT_ID")) {
     $authorization->mustBeSignedIn();
-    $location = "/settings?tab=authentication";
+    $location = "/settings#authentication";
 } else {
     $authorization->mustNotBeSignedIn();
     $location = "/sign-in";

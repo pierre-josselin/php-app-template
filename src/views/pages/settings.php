@@ -130,19 +130,19 @@
             <div class="row">
                 <div class="col-md-3 mb-4">
                     <div class="nav flex-column nav-pills">
-                        <a class="nav-link <?= ($tab === "account" ? "active" : "") ?>"
+                        <a class="nav-link" onclick="window.location.hash = 'account';"
                         data-toggle="pill" href="#settings-account-tab"><?= ucfirst($localization->getText("account")) ?></a>
-                        <a class="nav-link <?= ($tab === "profile-picture" ? "active" : "") ?>"
+                        <a class="nav-link" onclick="window.location.hash = 'profile-picture';"
                         data-toggle="pill" href="#settings-profile-picture-tab"><?= ucfirst($localization->getText("profile_picture")) ?></a>
-                        <a class="nav-link <?= ($tab === "authentication" ? "active" : "") ?>"
+                        <a class="nav-link" onclick="window.location.hash = 'authentication';"
                         data-toggle="pill" href="#settings-authentication-tab"><?= ucfirst($localization->getText("authentication")) ?></a>
-                        <a class="nav-link <?= ($tab === "sessions" ? "active" : "") ?>"
+                        <a class="nav-link" onclick="window.location.hash = 'sessions';"
                         data-toggle="pill" href="#settings-sessions-tab"><?= ucfirst($localization->getText("sessions")) ?></a>
                     </div>
                 </div>
                 <div class="col-md-9">
                     <div class="tab-content">
-                        <div id="settings-account-tab" class="tab-pane <?= ($tab === "account" ? "active" : "") ?>">
+                        <div id="settings-account-tab" class="tab-pane">
                             <h5><?= ucfirst($localization->getText("account_details")) ?></h5><hr>
                             <dl class="row">
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("identifier")) ?></dt>
@@ -175,7 +175,7 @@
                             </dl>
                             <a href="javascript: settings.deleteAccount();" class="text-danger mt-4"><?= ucfirst($localization->getText("delete_account")) ?></a>
                         </div>
-                        <div id="settings-profile-picture-tab" class="tab-pane <?= ($tab === "profile-picture" ? "active" : "") ?>">
+                        <div id="settings-profile-picture-tab" class="tab-pane">
                             <h5><?= ucfirst($localization->getText("profile_picture")) ?></h5><hr>
                             <?php if($account->getPicture()): ?>
                                 <a href="/file?id=<?= $account->getPicture() ?>" target="_blank">
@@ -191,7 +191,7 @@
                                 <button type="submit" class="btn btn-primary"><?= ucfirst($localization->getText("save")) ?></button>
                             </form>
                         </div>
-                        <div id="settings-authentication-tab" class="tab-pane <?= ($tab === "authentication" ? "active" : "") ?>">
+                        <div id="settings-authentication-tab" class="tab-pane">
                             <h5><?= ucfirst($localization->getText("authentication_methods")) ?></h5><hr>
                             <dl class="row">
                                 <dt class="col-lg-3"><?= ucfirst($localization->getText("email")) ?></dt>
@@ -218,7 +218,7 @@
                                 <?php endforeach; ?>
                             </dl>
                         </div>
-                        <div id="settings-sessions-tab" class="tab-pane <?= ($tab === "sessions" ? "active" : "") ?>">
+                        <div id="settings-sessions-tab" class="tab-pane">
                             <h5><?= ucfirst($localization->getText("sessions")) ?></h5><hr>
                             <div class="mb-2"><small><?= $localization->getText("dialog_delete_current_session") ?></small></div>
                             <div class="mb-3"><a class="btn btn-outline-danger btn-sm" href="javascript: settings.deleteAllSessions();"><?= ucfirst($localization->getText("delete_all_sessions")) ?></a></div>
@@ -257,5 +257,6 @@
     </div>
 </div>
 <script src="/js/settings.js"></script>
+<script>settings.openDefaultTab();</script>
 <?php $content = ob_get_clean(); ?>
 <?php require(Configuration::ROOT . "/views/pages/base.php"); ?>

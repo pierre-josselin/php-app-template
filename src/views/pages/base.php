@@ -6,6 +6,11 @@
         <link rel="stylesheet" href="/libraries/bootswatch/4.5.3/<?= Configuration::STYLE ?>/bootstrap.min.css">
         <link rel="stylesheet" href="/libraries/fontawesome/5.15.1/css/all.min.css">
         <link rel="stylesheet" href="/css/global.css">
+        <script src="/libraries/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/libraries/bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
+        <script src="/libraries/bootbox/5.4.0/bootbox.all.min.js"></script>
+        <script src="/js/utils.js"></script>
+        <script src="/js/global.js"></script>
         <title><?= $title ?> | <?= Configuration::BRAND ?></title>
     </head>
     <body>
@@ -47,10 +52,5 @@
             </div>
         </nav>
         <?= $content ?>
-        <script src="/libraries/jquery/3.5.1/jquery.min.js"></script>
-        <script src="/libraries/bootstrap/4.5.3/js/bootstrap.bundle.min.js"></script>
-        <script src="/libraries/bootbox/5.4.0/bootbox.all.min.js"></script>
-        <script src="/js/utils.js"></script>
-        <script src="/js/global.js"></script>
     </body>
 </html>

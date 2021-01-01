@@ -26,5 +26,18 @@ var settings = {
     deleteAllSessions: function() {
         var url = "/actions/delete-all-sessions";
         utils.request(url, "post");
+    },
+    openDefaultTab: function() {
+        if(window.location.hash === "#account") {
+            $('.nav-pills a[href="#settings-account-tab"]').tab("show");
+        } else if(window.location.hash === "#profile-picture") {
+            $('.nav-pills a[href="#settings-profile-picture-tab"]').tab("show");
+        } else if(window.location.hash === "#authentication") {
+            $('.nav-pills a[href="#settings-authentication-tab"]').tab("show");
+        } else if(window.location.hash === "#sessions") {
+            $('.nav-pills a[href="#settings-sessions-tab"]').tab("show");
+        } else {
+            $('.nav-pills a[href="#settings-account-tab"]').tab("show");
+        }
     }
 }

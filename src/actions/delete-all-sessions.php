@@ -1,7 +1,7 @@
 <?php
 $authorization->mustBeSignedIn();
 
-$location = "/settings?tab=sessions";
+$location = "/settings#sessions";
 $alert = [
     "type" => "danger",
     "message" => $localization->getText("alert_error")

@@ -1,7 +1,7 @@
 <?php
 $authorization->mustBeSignedIn();
 
-$location = "/settings?tab=profile-picture";
+$location = "/settings#profile-picture";
 $alert = [
     "type" => "danger",
     "message" => $localization->getText("alert_error")
