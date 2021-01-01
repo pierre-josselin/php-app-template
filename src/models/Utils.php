@@ -1,6 +1,20 @@
 <?php
 class Utils {
     public static function generateId(int $length = 32) {
+        global $database;
+        while(true) {
+            $token = Utils::generateToken($length);
+            $filter = ["_id" => $token];
+            $identifier = $database->identifiers->findOne($filter);
+            if($identifier) continue;
+            $identifier = ["_id" => $token];
+            $database->identifiers->insertOne($identifier);
+            break;
+        }
+        return $token;
+    }
+    
+    public static function generateToken(int $length = 32) {
         $length = intval($length / 2);
         $bytes = random_bytes($length);
         return bin2hex($bytes);
