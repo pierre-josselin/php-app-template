@@ -51,6 +51,9 @@ while(true) {
     setcookie("session", $session->getId(), $session->getExpirationTime(), "/");
     
     $location = "/";
+    if(isset($_SESSION["redirection"])) {
+        $location = $_SESSION["redirection"];
+    }
     $alert = false;
     break;
 }

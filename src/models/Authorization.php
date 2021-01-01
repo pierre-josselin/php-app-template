@@ -4,6 +4,11 @@ class Authorization {
         global $accountManager;
         global $localization;
         if(!constant("ACCOUNT_ID")) {
+            $_SESSION["alerts"][] = [
+                "type" => "warning",
+                "message" => $localization->getText("alert_must_be_signed_in_to_continue")
+            ];
+            $_SESSION["redirection"] = $_SERVER["REQUEST_URI"];
             header("Location: /sign-in");
             exit;
         }

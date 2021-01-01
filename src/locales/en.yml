@@ -25,6 +25,7 @@ alert_incorrect_password: The password is incorrect.
 alert_keyrock_already_associated: Keyrock is already associated with this account.
 alert_keyrock_associated: Keyrock has been successfully associated with this account.
 alert_keyrock_unavailable: This Keyrock account is already associated with another account.
+alert_must_be_signed_in_to_continue: You must be signed in to continue.
 alert_only_authentication_method: "Cannot remove {name} because it is the only authentication method associated with the account."
 alert_password_updated: The password has been successfully updated.
 alert_personal_informations_updated: Personal information has been saved.
