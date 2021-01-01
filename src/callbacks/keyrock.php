@@ -20,7 +20,7 @@ while(true) {
     
     $url = Configuration::OAUTH_AUTHENTICATION_METHODS["keyrock"]["url"];
     $url .= "/user?access_token={$_GET["token"]}";
-    $data = json_decode(Utils::request($url), true);
+    $data = Utils::decodeJSON(Utils::request($url), true);
     
     if(!isset($data["id"])) break;
     if(!$data["id"]) break;
