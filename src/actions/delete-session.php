@@ -15,6 +15,7 @@ while(true) {
     
     $filter = ["_id" => $_POST["id"], "accountId" => constant("ACCOUNT_ID")];
     $session = $sessionManager->read($filter);
+    if(!$session) break;
     $sessionManager->delete($session);
     
     $alert = [
