@@ -1,5 +1,5 @@
 <?php
-Authorization::mustNotBeSignedIn();
+$authorization->mustNotBeSignedIn();
 
 $location = "/sign-up";
 $alert = [
@@ -16,8 +16,8 @@ while(true) {
     if(mb_strlen($_POST["password"]) < 6) break;
     if(mb_strlen($_POST["password"]) > 128) break;
     
-    $query = ["email" => $_POST["email"]];
-    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+    $filter = ["email" => $_POST["email"]];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
     if($emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
@@ -26,33 +26,24 @@ while(true) {
         break;
     }
     
-    $account = [
-        "_id" => Utils::generateId(),
-        "type" => "user",
-        "email" => $_POST["email"],
-        "enabled" => true,
-        "registrationTime" => time()
-    ];
-    $manager->create("accounts", $account);
+    $account = new Account();
+    $account->initialize();
+    $account->setEmail($_POST["email"]);
+    $accountManager->create($account);
     
-    $emailAuthenticationMethod = [
-        "_id" => Utils::generateId(),
-        "accountId" => $account["_id"],
-        "email" => $_POST["email"],
-        "passwordHash" => password_hash($_POST["password"], PASSWORD_DEFAULT)
-    ];
-    $manager->create("emailAuthenticationMethods", $emailAuthenticationMethod);
+    $emailAuthenticationMethod = new EmailAuthenticationMethod();
+    $emailAuthenticationMethod->initialize();
+    $emailAuthenticationMethod->setAccountId($account->getId());
+    $emailAuthenticationMethod->setEmail($_POST["email"]);
+    $emailAuthenticationMethod->setPasswordHash(password_hash($_POST["password"], PASSWORD_DEFAULT));
+    $emailAuthenticationMethodManager->create($emailAuthenticationMethod);
     
-    $session = [
-        "_id" => Utils::generateId(512),
-        "accountId" => $account["_id"],
-        "ip" => Utils::getIp(),
-        "creationTime" => time(),
-        "updateTime" => time(),
-        "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
-    ];
-    $manager->create("sessions", $session);
-    setcookie("session", $session["_id"], $session["expirationTime"], "/");
+    $session = new Session();
+    $session->initialize();
+    $session->setAccountId($account->getId());
+    $sessionManager->create($session);
+    setcookie("session", $session->getId(), $session->getExpirationTime(), "/");
+    
     $location = "/";
     $alert = [
         "type" => "success",

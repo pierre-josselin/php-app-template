@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=profile-picture";
 $alert = [
@@ -20,20 +20,16 @@ while(true) {
     $content = Utils::resizeImage($path, $type, "image/jpeg", 300);
     if(!$content) break;
     
-    $file = [
-        "_id" => Utils::generateId(),
-        "accountId" => constant("ACCOUNT_ID"),
-        "type" => "image/jpeg",
-        "content" => $content,
-        "uploadTime" => time()
-    ];
+    $file = new File();
+    $file->initialize();
+    $file->setType("image/jpeg");
+    $file->setContent($content);
     $fileManager->create($file);
     
-    $query = ["_id" => constant("ACCOUNT_ID")];
-    $account = $manager->read("accounts", $query);
-    
-    $account["picture"] = $file["_id"];
-    $manager->update("accounts", $account);
+    $filter = ["_id" => constant("ACCOUNT_ID")];
+    $account = $accountManager->read($filter);
+    $account->setPicture($file->getId());
+    $accountManager->update($account);
     
     $alert = [
         "type" => "success",

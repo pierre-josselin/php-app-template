@@ -1,5 +1,5 @@
 <?php
-Authorization::mustNotBeSignedIn();
+$authorization->mustNotBeSignedIn();
 
 $location = "/sign-in";
 $alert = [
@@ -14,8 +14,8 @@ while(true) {
     if(!is_string($_POST["password"])) break;
     if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) break;
     
-    $query = ["email" => $_POST["email"]];
-    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+    $filter = ["email" => $_POST["email"]];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
     if(!$emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
@@ -24,7 +24,7 @@ while(true) {
         break;
     }
     
-    if(!password_verify($_POST["password"], $emailAuthenticationMethod["passwordHash"])) {
+    if(!password_verify($_POST["password"], $emailAuthenticationMethod->getPasswordHash())) {
         $alert = [
             "type" => "danger",
             "message" => $localization->getText("alert_incorrect_password")
@@ -32,10 +32,11 @@ while(true) {
         break;
     }
     
-    $account = $manager->read("accounts", ["_id" => $emailAuthenticationMethod["accountId"]]);
+    $filter = ["_id" => $emailAuthenticationMethod->getAccountId()];
+    $account = $accountManager->read($filter);
     if(!$account) break;
     
-    if(!$account["enabled"]) {
+    if(!$account->getEnabled()) {
         $alert = [
             "type" => "danger",
             "message" => $localization->getText("alert_disabled_account")
@@ -43,16 +44,12 @@ while(true) {
         break;
     }
     
-    $session = [
-        "_id" => Utils::generateId(512),
-        "accountId" => $account["_id"],
-        "ip" => Utils::getIp(),
-        "creationTime" => time(),
-        "updateTime" => time(),
-        "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
-    ];
-    $manager->create("sessions", $session);
-    setcookie("session", $session["_id"], $session["expirationTime"], "/");
+    $session = new Session();
+    $session->initialize();
+    $session->setAccountId($account->getId());
+    $sessionManager->create($session);
+    setcookie("session", $session->getId(), $session->getExpirationTime(), "/");
+    
     $location = "/";
     $alert = false;
     break;

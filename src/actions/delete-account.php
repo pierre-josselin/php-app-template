@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=account";
 $alert = [
@@ -10,12 +10,19 @@ $alert = [
 while(true) {
     if($_SERVER["REQUEST_METHOD"] !== "POST") break;
     
-    $query = ["accountId" => constant("ACCOUNT_ID")];
-    $manager->delete("oauthAuthenticationMethods", $query, true);
-    $manager->delete("emailAuthenticationMethods", $query, true);
+    $filter = ["accountId" => constant("ACCOUNT_ID")];
+    $oauthAuthenticationMethods = $oauthAuthenticationMethodManager->read($filter, [], true);
+    foreach($oauthAuthenticationMethods as $oauthAuthenticationMethod) {
+        $oauthAuthenticationMethodManager->delete($oauthAuthenticationMethod);
+    }
+    $emailAuthenticationMethods = $emailAuthenticationMethodManager->read($filter, [], true);
+    foreach($emailAuthenticationMethods as $emailAuthenticationMethod) {
+        $emailAuthenticationMethodManager->delete($emailAuthenticationMethod);
+    }
     
-    $query = ["_id" => constant("ACCOUNT_ID")];
-    $manager->delete("accounts", $query);
+    $filter = ["_id" => constant("ACCOUNT_ID")];
+    $account = $accountManager->read($filter);
+    $accountManager->delete($account);
     
     $location = "/actions/sign-out";
     $alert = [

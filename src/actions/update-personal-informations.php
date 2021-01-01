@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=account";
 $alert = [
@@ -18,6 +18,7 @@ while(true) {
     if(!isset($_POST["street"])) break;
     if(!isset($_POST["postal-code"])) break;
     if(!isset($_POST["city"])) break;
+    if(!isset($_POST["country"])) break;
     if(!is_string($_POST["first-name"])) break;
     if(!is_string($_POST["last-name"])) break;
     if(!is_string($_POST["gender"])) break;
@@ -27,38 +28,41 @@ while(true) {
     if(!is_string($_POST["street"])) break;
     if(!is_string($_POST["postal-code"])) break;
     if(!is_string($_POST["city"])) break;
+    if(!is_string($_POST["country"])) break;
     
     if($_POST["gender"] !== "") {
         if(!in_array($_POST["gender"], ["male", "female"])) {
             break;
         }
     }
+    
     if($_POST["email"] !== "") {
         if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             break;
         }
     }
+    
     if($_POST["birth-date"] !== "") {
         if(!Utils::checkDateFormat($_POST["birth-date"])) {
             break;
         }
     }
     
-    $query = ["_id" => constant("ACCOUNT_ID")];
-    $account = $manager->read("accounts", $query);
-    $account["firstName"] = $_POST["first-name"];
-    $account["lastName"] = $_POST["last-name"];
-    $account["gender"] = $_POST["gender"];
-    $account["email"] = $_POST["email"];
-    $account["phone"] = $_POST["phone"];
-    $account["birthDate"] = $_POST["birth-date"];
-    $account["address"] = [
+    $filter = ["_id" => constant("ACCOUNT_ID")];
+    $account = $accountManager->read($filter);
+    $account->setFirstName($_POST["first-name"]);
+    $account->setLastName($_POST["last-name"]);
+    $account->setGender($_POST["gender"]);
+    $account->setEmail($_POST["email"]);
+    $account->setPhone($_POST["phone"]);
+    $account->setBirthDate($_POST["birth-date"]);
+    $account->setAddress([
         "street" => $_POST["street"],
         "postalCode" => $_POST["postal-code"],
         "city" => $_POST["city"],
         "country" => $_POST["country"]
-    ];
-    $manager->update("accounts", $account);
+    ]);
+    $accountManager->update($account);
     
     $alert = [
         "type" => "success",

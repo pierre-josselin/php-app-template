@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=authentication";
 $alert = [
@@ -15,11 +15,11 @@ while(true) {
     if(mb_strlen($_POST["new-password"]) < 6) break;
     if(mb_strlen($_POST["new-password"]) > 128) break;
     
-    $query = ["accountId" => constant("ACCOUNT_ID")];
-    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+    $filter = ["accountId" => constant("ACCOUNT_ID")];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
     if(!$emailAuthenticationMethod) break;
     
-    if(!password_verify($_POST["password"], $emailAuthenticationMethod["passwordHash"])) {
+    if(!password_verify($_POST["password"], $emailAuthenticationMethod->getPasswordHash())) {
         $alert = [
             "type" => "danger",
             "message" => $localization->getText("alert_incorrect_password")
@@ -27,8 +27,8 @@ while(true) {
         break;
     }
     
-    $emailAuthenticationMethod["passwordHash"] = password_hash($_POST["new-password"], PASSWORD_DEFAULT);
-    $manager->update("emailAuthenticationMethods", $emailAuthenticationMethod);
+    $emailAuthenticationMethod->setPasswordHash(password_hash($_POST["new-password"], PASSWORD_DEFAULT));
+    $emailAuthenticationMethodManager->update($emailAuthenticationMethod);
     
     $alert = [
         "type" => "success",

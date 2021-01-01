@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=authentication";
 $alert = [
@@ -13,11 +13,11 @@ while(true) {
     if(!is_string($_POST["email"])) break;
     if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) break;
     
-    $query = ["accountId" => constant("ACCOUNT_ID")];
-    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+    $filter = ["accountId" => constant("ACCOUNT_ID")];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
     if(!$emailAuthenticationMethod) break;
     
-    if($emailAuthenticationMethod["email"] === $_POST["email"]) {
+    if($emailAuthenticationMethod->getEmail() === $_POST["email"]) {
         $alert = [
             "type" => "info",
             "message" => $localization->getText("alert_same_email")
@@ -25,9 +25,9 @@ while(true) {
         break;
     }
     
-    $query = ["email" => $_POST["email"]];
-    $result = $manager->read("emailAuthenticationMethods", $query);
-    if($result) {
+    $filter = ["email" => $_POST["email"]];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
+    if($emailAuthenticationMethod) {
         $alert = [
             "type" => "danger",
             "message" => $localization->getText("alert_email_unavailable")
@@ -35,8 +35,10 @@ while(true) {
         break;
     }
     
-    $emailAuthenticationMethod["email"] = $_POST["email"];
-    $manager->update("emailAuthenticationMethods", $emailAuthenticationMethod);
+    $filter = ["accountId" => constant("ACCOUNT_ID")];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
+    $emailAuthenticationMethod->setEmail($_POST["email"]);
+    $emailAuthenticationMethodManager->update($emailAuthenticationMethod);
     
     $alert = [
         "type" => "success",

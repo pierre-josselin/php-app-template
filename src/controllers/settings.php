@@ -1,51 +1,50 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
-$query = ["_id" => constant("ACCOUNT_ID")];
-$account = $manager->read("accounts", $query);
+$filter = ["_id" => constant("ACCOUNT_ID")];
+$account = $accountManager->read($filter);
 
-$query = ["accountId" => constant("ACCOUNT_ID")];
-$emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
+$filter = ["accountId" => constant("ACCOUNT_ID")];
+$emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
 
 $oauthAuthenticationMethods = [];
-$result = $manager->read("oauthAuthenticationMethods", $query, [], true);
-foreach($result as $key => $value) {
-    $oauthAuthenticationMethods[$value["provider"]] = $value;
+$array = $oauthAuthenticationMethodManager->read($filter, [], true);
+foreach($array as $oauthAuthenticationMethod) {
+    $oauthAuthenticationMethods[$oauthAuthenticationMethod->getProvider()] = $oauthAuthenticationMethod;
 }
 
-$query = ["accountId" => constant("ACCOUNT_ID")];
+$filter = ["accountId" => constant("ACCOUNT_ID")];
 $options = ["sort" => ["updateTime" => -1]];
-$sessions = $manager->read("sessions", $query, $options, true);
+$sessions = $sessionManager->read($filter, $options, true);
 
-foreach($sessions as $index => $session) {
-    $sessions[$index]["badge"] = false;
-    if($session["_id"] === constant("SESSION_ID")) {
-        $sessions[$index]["badge"] = [
+$sessionsMetadata = [];
+foreach($sessions as $session) {
+    $sessionsMetadata[$session->getId()] = [];
+    $sessionsMetadata[$session->getId()]["badge"] = false;
+    if($session->getId() === constant("SESSION_ID")) {
+        $sessionsMetadata[$session->getId()]["badge"] = [
             "type" => "success",
             "name" => $localization->getText("current_session")
         ];
-    } elseif($session["expirationTime"] < time()) {
-        $sessions[$index]["badge"] = [
+    } elseif($session->getExpirationTime() < time()) {
+        $sessionsMetadata[$session->getId()]["badge"] = [
             "type" => "danger",
             "name" => $localization->getText("expired_session")
         ];
-    } elseif($session["updateTime"] > strtotime("-1 minute")) {
-        $sessions[$index]["badge"] = [
+    } elseif($session->getUpdateTime() > strtotime("-1 minute")) {
+        $sessionsMetadata[$session->getId()]["badge"] = [
             "type" => "primary",
             "name" => $localization->getText("in_use_session")
         ];
-    } elseif($session["updateTime"] < strtotime("-7 days")) {
-        $sessions[$index]["badge"] = [
+    } elseif($session->getUpdateTime() < strtotime("-7 days")) {
+        $sessionsMetadata[$session->getId()]["badge"] = [
             "type" => "secondary",
             "name" => $localization->getText("unused_session")
         ];
     }
-}
-
-foreach($sessions as $index => $session) {
-    $sessions[$index]["ipLocation"] = false;
+    $sessionsMetadata[$session->getId()]["ipLocation"] = false;
     if(count($sessions) <= 5) {
-        $sessions[$index]["ipLocation"] = Utils::getIpLocation($session["ip"]);
+        $sessionsMetadata[$session->getId()]["ipLocation"] = Utils::getIpLocation($session->getIp());
     }
 }
 

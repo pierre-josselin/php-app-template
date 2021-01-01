@@ -1,19 +1,19 @@
 <?php
 class Authorization {
     public static function mustBeSignedIn() {
-        global $manager;
+        global $accountManager;
         global $localization;
         if(!constant("ACCOUNT_ID")) {
             header("Location: /sign-in");
             exit;
         }
-        $query = ["_id" => constant("ACCOUNT_ID")];
-        $account = $manager->read("accounts", $query);
+        $filter = ["_id" => constant("ACCOUNT_ID")];
+        $account = $accountManager->read($filter);
         if(!$account) {
             header("Location: /actions/sign-out");
             exit;
         }
-        if(!$account["enabled"]) {
+        if(!$account->getEnabled()) {
             $_SESSION["alerts"][] = [
                 "type" => "danger",
                 "message" => $localization->getText("alert_account_disabled")
@@ -31,11 +31,11 @@ class Authorization {
     }
     
     public static function mustBeAdmin() {
-        global $manager;
+        global $accountManager;
         global $localization;
-        $query = ["_id" => constant("ACCOUNT_ID")];
-        $account = $manager->read("accounts", $query);
-        if($account["type"] !== "admin") {
+        $filter = ["_id" => constant("ACCOUNT_ID")];
+        $account = $accountManager->read($filter);
+        if($account->getType() !== "admin") {
             $_SESSION["alerts"][] = [
                 "type" => "danger",
                 "message" => $localization->getText("alert_access_denied")

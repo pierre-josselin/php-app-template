@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=sessions";
 $alert = [
@@ -13,8 +13,9 @@ while(true) {
     if(!is_string($_POST["id"])) break;
     if(!$_POST["id"]) break;
     
-    $query = ["_id" => $_POST["id"], "accountId" => constant("ACCOUNT_ID")];
-    $manager->delete("sessions", $query);
+    $filter = ["_id" => $_POST["id"], "accountId" => constant("ACCOUNT_ID")];
+    $session = $sessionManager->read($filter);
+    $sessionManager->delete($session);
     
     $alert = [
         "type" => "success",

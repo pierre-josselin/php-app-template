@@ -4,19 +4,19 @@ while(true) {
     if(!is_string($_GET["id"])) break;
     if($_GET["id"] === "") break;
     
-    $query = ["_id" => $_GET["id"]];
-    $file = $fileManager->read($query);
+    $filter = ["_id" => $_GET["id"]];
+    $file = $fileManager->read($filter);
     if(!$file) break;
     
-    $name = $file["_id"];
-    if($file["name"]) {
-        $name = rawurlencode($file["name"]);
+    $name = $file->getId();
+    if($file->getName()) {
+        $name = rawurlencode($file->getName());
     }
-    $contentDisposition = (isset($_GET["download"]) ? "attachment" : "inline");
-    header("Content-Type: {$file["type"]}");
+    $contentDisposition = (isset($_GET["attachment"]) ? "attachment" : "inline");
+    header("Content-Type: " . $file->getType());
     header("Content-Disposition: {$contentDisposition}; filename=\"{$name}\"");
     
-    exit($file["content"]);
+    exit($file->getContent());
 }
 
 http_response_code(404);

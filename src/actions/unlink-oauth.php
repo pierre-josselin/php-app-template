@@ -1,5 +1,5 @@
 <?php
-Authorization::mustBeSignedIn();
+$authorization->mustBeSignedIn();
 
 $location = "/settings?tab=authentication";
 $alert = [
@@ -14,15 +14,15 @@ while(true) {
     if(!isset(Configuration::OAUTH_AUTHENTICATION_METHODS[$_POST["provider"]])) break;
     $name = ucfirst($_POST["provider"]);
     
-    $query = ["accountId" => constant("ACCOUNT_ID"), "provider" => $_POST["provider"]];
-    $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
+    $filter = ["accountId" => constant("ACCOUNT_ID"), "provider" => $_POST["provider"]];
+    $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($filter);
     if(!$oauthAuthenticationMethod) break;
     
-    $query = ["accountId" => constant("ACCOUNT_ID")];
-    $emailAuthenticationMethod = $manager->read("emailAuthenticationMethods", $query);
-    $result = $manager->read("oauthAuthenticationMethods", $query, [], true);
+    $filter = ["accountId" => constant("ACCOUNT_ID")];
+    $emailAuthenticationMethod = $emailAuthenticationMethodManager->read($filter);
+    $oauthAuthenticationMethods = $oauthAuthenticationMethodManager->read($filter, [], true);
     
-    if(!$emailAuthenticationMethod && count($result) < 2) {
+    if(!$emailAuthenticationMethod && count($oauthAuthenticationMethods) < 2) {
         $variables = [
             "name" => $name
         ];
@@ -33,8 +33,7 @@ while(true) {
         break;
     }
     
-    $query = ["accountId" => constant("ACCOUNT_ID"), "provider" => $_POST["provider"]];
-    $manager->delete("oauthAuthenticationMethods", $query);
+    $oauthAuthenticationMethodManager->delete($oauthAuthenticationMethod);
     
     $variables = [
         "name" => $name

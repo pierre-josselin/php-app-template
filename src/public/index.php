@@ -52,11 +52,15 @@ if(!isset($_SESSION["alerts"])) {
     $_SESSION["alerts"] = [];
 }
 
-$manager = new Manager();
-$fileManager = new FileManager();
+$accountManager = new AccountManager($database);
+$emailAuthenticationMethodManager = new EmailAuthenticationMethodManager($database);
+$oauthAuthenticationMethodManager = new OAuthAuthenticationMethodManager($database);
+$sessionManager = new SessionManager($database);
+$fileManager = new FileManager($database);
+$authorization = new Authorization();
 
 if(Configuration::SMTP) {
-    $emailManager = new EmailManager();
+    $emailManager = new EmailManager(Configuration::SMTP);
 }
 
 $success = false;
@@ -65,26 +69,25 @@ while(true) {
     if(!is_string($_COOKIE["session"])) break;
     if(!$_COOKIE["session"]) break;
     
-    $query = ["_id" => $_COOKIE["session"]];
-    $session = $manager->read("sessions", $query);
+    $filter = ["_id" => $_COOKIE["session"]];
+    $session = $sessionManager->read($filter);
     
     if(!$session) {
         setcookie("session", "", time() - 3600, "/");
         break;
     }
     
-    if($session["expirationTime"] < time()) {
-        $query = ["_id" => $session["_id"]];
-        $manager->delete("sessions", $query);
+    if($session->getExpirationTime() < time()) {
+        $sessionManager->delete($session);
         break;
     }
     
-    $session["ip"] = Utils::getIp();
-    $session["updateTime"] = time();
-    $manager->update("sessions", $session);
+    $session->setIp(Utils::getIp());
+    $session->setUpdateTime(time());
+    $sessionManager->update($session);
     
-    define("SESSION_ID", $session["_id"]);
-    define("ACCOUNT_ID", $session["accountId"]);
+    define("SESSION_ID", $session->getId());
+    define("ACCOUNT_ID", $session->getAccountId());
     $success = true;
     break;
 }
@@ -95,9 +98,21 @@ if(!$success) {
 }
 
 if(constant("ACCOUNT_ID")) {
-    $query = ["_id" => constant("ACCOUNT_ID")];
-    $account = $manager->read("accounts", $query);
-    define("ACCOUNT", $account);
+    $filter = ["_id" => constant("ACCOUNT_ID")];
+    $account = $accountManager->read($filter);
+    if($account->getFirstName() && $account->getLastName()) {
+        define("ACCOUNT_NAME", $account->getFirstName() . " " . $account->getLastName());
+    } elseif($account->getFirstName()) {
+        define("ACCOUNT_NAME", $account->getFirstName());
+    } elseif($account->getLastName()) {
+        define("ACCOUNT_NAME", $account->getLastName());
+    } elseif($account->getEmail()) {
+        define("ACCOUNT_NAME", $account->getEmail());
+    } else {
+        define("ACCOUNT_NAME", false);
+    }
+    define("ACCOUNT_TYPE", $account->getType());
+    define("ACCOUNT_PICTURE", $account->getPicture());
 }
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));

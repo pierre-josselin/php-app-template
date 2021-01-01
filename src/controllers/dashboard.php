@@ -1,8 +1,8 @@
 <?php
-Authorization::mustBeSignedIn();
-Authorization::mustBeAdmin();
+$authorization->mustBeSignedIn();
+$authorization->mustBeAdmin();
 
 $options = ["sort" => ["registrationTime" => -1]];
-$accounts = $manager->read("accounts", [], $options, true);
+$accounts = $accountManager->read([], $options, true);
 
 require(Configuration::ROOT . "/views/pages/dashboard.php");

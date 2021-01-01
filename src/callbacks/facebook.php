@@ -1,9 +1,9 @@
 <?php
 if(constant("ACCOUNT_ID")) {
-    Authorization::mustBeSignedIn();
+    $authorization->mustBeSignedIn();
     $location = "/settings?tab=authentication";
 } else {
-    Authorization::mustNotBeSignedIn();
+    $authorization->mustNotBeSignedIn();
     $location = "/sign-in";
 }
 $alert = [
@@ -31,8 +31,8 @@ while(true) {
     }
     
     if(constant("ACCOUNT_ID")) {
-        $query = ["accountId" => constant("ACCOUNT_ID"), "provider" => "facebook"];
-        $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
+        $filter = ["accountId" => constant("ACCOUNT_ID"), "provider" => "facebook"];
+        $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($filter);
         
         if($oauthAuthenticationMethod) {
             $alert = [
@@ -42,8 +42,8 @@ while(true) {
             break;
         }
         
-        $query = ["id" => $graphUser->getId(), "provider" => "facebook"];
-        $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
+        $filter = ["userId" => $graphUser->getId(), "provider" => "facebook"];
+        $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($filter);
         
         if($oauthAuthenticationMethod) {
             $alert = [
@@ -53,16 +53,15 @@ while(true) {
             break;
         }
         
-        $oauthAuthenticationMethod = [
-            "_id" => Utils::generateId(),
-            "accountId" => constant("ACCOUNT_ID"),
-            "id" => $graphUser->getId(),
-            "provider" => "facebook"
-        ];
+        $oauthAuthenticationMethod = new OAuthAuthenticationMethod();
+        $oauthAuthenticationMethod->initialize();
+        $oauthAuthenticationMethod->setAccountId(constant("ACCOUNT_ID"));
+        $oauthAuthenticationMethod->setUserId($graphUser->getId());
+        $oauthAuthenticationMethod->setProvider("facebook");
         if($graphUser->getName()) {
-            $oauthAuthenticationMethod["name"] = $graphUser->getName();
+            $oauthAuthenticationMethod->setName($graphUser->getName());
         }
-        $manager->create("oauthAuthenticationMethods", $oauthAuthenticationMethod);
+        $oauthAuthenticationMethodManager->create($oauthAuthenticationMethod);
         
         $alert = [
             "type" => "success",
@@ -70,15 +69,15 @@ while(true) {
         ];
         break;
     } else {
-        $query = ["id" => $graphUser->getId(), "provider" => "facebook"];
-        $oauthAuthenticationMethod = $manager->read("oauthAuthenticationMethods", $query);
+        $filter = ["userId" => $graphUser->getId(), "provider" => "facebook"];
+        $oauthAuthenticationMethod = $oauthAuthenticationMethodManager->read($filter);
         
         if($oauthAuthenticationMethod) {
-            $query = ["_id" => $oauthAuthenticationMethod["accountId"]];
-            $account = $manager->read("accounts", $query);
+            $filter = ["_id" => $oauthAuthenticationMethod->getAccountId()];
+            $account = $accountManager->read($filter);
             if(!$account) break;
             
-            if(!$account["enabled"]) {
+            if(!$account->getEnabled()) {
                 $alert = [
                     "type" => "danger",
                     "message" => $localization->getText("alert_disabled_account")
@@ -86,59 +85,46 @@ while(true) {
                 break;
             }
             
-            $session = [
-                "_id" => Utils::generateId(512),
-                "accountId" => $account["_id"],
-                "ip" => Utils::getIp(),
-                "creationTime" => time(),
-                "updateTime" => time(),
-                "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
-            ];
-            $manager->create("sessions", $session);
-            setcookie("session", $session["_id"], $session["expirationTime"], "/");
+            $session = new Session();
+            $session->initialize();
+            $session->setAccountId($account->getId());
+            $sessionManager->create($session);
+            setcookie("session", $session->getId(), $session->getExpirationTime(), "/");
+            
             $location = "/";
             $alert = false;
             break;
         }
         
-        $account = [
-            "_id" => Utils::generateId(),
-            "type" => "user",
-            "enabled" => true,
-            "registrationTime" => time()
-        ];
+        $account = new Account();
+        $account->initialize();
         if($graphUser->getEmail()) {
-            $account["email"] = $graphUser->getEmail();
+            $account->setEmail($graphUser->getEmail());
         }
         if($graphUser->getFirstName()) {
-            $account["firstName"] = $graphUser->getFirstName();
+            $account->setFirstName($graphUser->getFirstName());
         }
         if($graphUser->getLastName()) {
-            $account["lastName"] = $graphUser->getLastName();
+            $account->setLastName($graphUser->getLastName());
         }
-        $manager->create("accounts", $account);
+        $accountManager->create($account);
         
-        $oauthAuthenticationMethod = [
-            "_id" => Utils::generateId(),
-            "accountId" => $account["_id"],
-            "id" => $graphUser->getId(),
-            "provider" => "facebook"
-        ];
+        $oauthAuthenticationMethod = new OAuthAuthenticationMethod();
+        $oauthAuthenticationMethod->initialize();
+        $oauthAuthenticationMethod->setAccountId($account->getId());
+        $oauthAuthenticationMethod->setUserId($graphUser->getId());
+        $oauthAuthenticationMethod->setProvider("facebook");
         if($graphUser->getName()) {
-            $oauthAuthenticationMethod["name"] = $graphUser->getName();
+            $oauthAuthenticationMethod->setName($graphUser->getName());
         }
-        $manager->create("oauthAuthenticationMethods", $oauthAuthenticationMethod);
+        $oauthAuthenticationMethodManager->create($oauthAuthenticationMethod);
         
-        $session = [
-            "_id" => Utils::generateId(512),
-            "accountId" => $account["_id"],
-            "ip" => Utils::getIp(),
-            "creationTime" => time(),
-            "updateTime" => time(),
-            "expirationTime" => strtotime(Configuration::SESSION_LIFESPAN)
-        ];
-        $manager->create("sessions", $session);
-        setcookie("session", $session["_id"], $session["expirationTime"], "/");
+        $session = new Session();
+        $session->initialize();
+        $session->setAccountId($account->getId());
+        $sessionManager->create($session);
+        setcookie("session", $session->getId(), $session->getExpirationTime(), "/");
+        
         $location = "/";
         $alert = [
             "type" => "success",

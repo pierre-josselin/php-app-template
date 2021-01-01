@@ -22,18 +22,18 @@
                         <?php foreach($accounts as $account): ?>
                             <tr>
                                 <td class="text-center">
-                                    <?php if($account["enabled"]): ?>
+                                    <?php if($account->getEnabled()): ?>
                                         <i class="fas fa-check text-success"></i>
                                     <?php else: ?>
                                         <i class="fas fa-times text-danger"></i>
                                     <?php endif; ?>
                                 </td>
-                                <td><?= ucfirst($localization->getText($account["type"])) ?></td>
-                                <td><?= $account["_id"] ?></td>
-                                <td><?= htmlentities(Utils::truncateText($account["firstName"], 30, "..")) ?></td>
-                                <td><?= htmlentities(Utils::truncateText($account["lastName"], 30, "..")) ?></td>
-                                <td><?= Utils::truncateText($account["email"], 80, "..") ?></td>
-                                <td><?= date("d/m/Y", $account["registrationTime"]) ?></td>
+                                <td><?= ucfirst($localization->getText($account->getType())) ?></td>
+                                <td><?= $account->getId() ?></td>
+                                <td><?= htmlentities(Utils::truncateText($account->getFirstName(), 30, "..")) ?></td>
+                                <td><?= htmlentities(Utils::truncateText($account->getLastName(), 30, "..")) ?></td>
+                                <td><?= Utils::truncateText($account->getEmail(), 80, "..") ?></td>
+                                <td><?= date("d/m/Y", $account->getRegistrationTime()) ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
