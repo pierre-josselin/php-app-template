@@ -43,28 +43,6 @@ class Configuration {
         "/" => "title_home",
     ];
     const ROUTES = [
-        "/" => "/controllers/home.php",
-        "/actions/delete-account" => "/actions/delete-account.php",
-        "/actions/sign-in" => "/actions/sign-in.php",
-        "/actions/sign-out" => "/actions/sign-out.php",
-        "/actions/sign-up" => "/actions/sign-up.php",
-        "/actions/unlink-oauth" => "/actions/unlink-oauth.php",
-        "/actions/update-email" => "/actions/update-email.php",
-        "/actions/update-password" => "/actions/update-password.php",
-        "/actions/update-personal-informations" => "/actions/update-personal-informations.php",
-        "/actions/update-profile-picture" => "/actions/update-profile-picture.php",
-        "/callbacks/facebook" => "/callbacks/facebook.php",
-        "/callbacks/keyrock" => "/callbacks/keyrock.php",
-        "/dashboard" => "/controllers/dashboard.php",
-        "/file" => "/controllers/file.php",
-        "/privacy-policy" => "/controllers/privacy-policy.php",
-        "/settings" => "/controllers/settings.php",
-        "/sign-in" => "/controllers/sign-in.php",
-        "/sign-up" => "/controllers/sign-up.php",
-        "/css/global.css" => "/views/static/css/global.php",
-        "/js/global.js" => "/views/static/js/global.php",
-        "/js/settings.js" => "/views/static/js/settings.php",
-        "/js/utils.js" => "/views/static/js/utils.php"
     ];
     const OAUTH_AUTHENTICATION_METHODS = [
         "facebook" => [

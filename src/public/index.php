@@ -117,14 +117,41 @@ if(constant("ACCOUNT_ID")) {
     }
 }
 
+define("ROUTES", array_merge([
+    "/" => "/controllers/home.php",
+    "/actions/delete-account" => "/actions/delete-account.php",
+    "/actions/delete-session" => "/actions/delete-session.php",
+    "/actions/delete-all-sessions" => "/actions/delete-all-sessions.php",
+    "/actions/sign-in" => "/actions/sign-in.php",
+    "/actions/sign-out" => "/actions/sign-out.php",
+    "/actions/sign-up" => "/actions/sign-up.php",
+    "/actions/unlink-oauth" => "/actions/unlink-oauth.php",
+    "/actions/update-email" => "/actions/update-email.php",
+    "/actions/update-password" => "/actions/update-password.php",
+    "/actions/update-personal-informations" => "/actions/update-personal-informations.php",
+    "/actions/update-profile-picture" => "/actions/update-profile-picture.php",
+    "/callbacks/facebook" => "/callbacks/facebook.php",
+    "/callbacks/keyrock" => "/callbacks/keyrock.php",
+    "/dashboard" => "/controllers/dashboard.php",
+    "/file" => "/controllers/file.php",
+    "/privacy-policy" => "/controllers/privacy-policy.php",
+    "/settings" => "/controllers/settings.php",
+    "/sign-in" => "/controllers/sign-in.php",
+    "/sign-up" => "/controllers/sign-up.php",
+    "/css/global.css" => "/views/static/css/global.php",
+    "/js/global.js" => "/views/static/js/global.php",
+    "/js/settings.js" => "/views/static/js/settings.php",
+    "/js/utils.js" => "/views/static/js/utils.php"
+], Configuration::ROUTES));
+
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
 
-if(!array_key_exists(constant("PATH"), Configuration::ROUTES)) {
+if(!array_key_exists(constant("PATH"), constant("ROUTES"))) {
     http_response_code(404);
-} elseif(!is_file(Configuration::ROOT . Configuration::ROUTES[constant("PATH")])) {
+} elseif(!is_file(Configuration::ROOT . constant("ROUTES")[constant("PATH")])) {
     http_response_code(500);
 } else {
-    require(Configuration::ROOT . Configuration::ROUTES[constant("PATH")]);
+    require(Configuration::ROOT . constant("ROUTES")[constant("PATH")]);
 }
 
 exit;
