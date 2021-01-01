@@ -100,19 +100,21 @@ if(!$success) {
 if(constant("ACCOUNT_ID")) {
     $filter = ["_id" => constant("ACCOUNT_ID")];
     $account = $accountManager->read($filter);
-    if($account->getFirstName() && $account->getLastName()) {
-        define("ACCOUNT_NAME", $account->getFirstName() . " " . $account->getLastName());
-    } elseif($account->getFirstName()) {
-        define("ACCOUNT_NAME", $account->getFirstName());
-    } elseif($account->getLastName()) {
-        define("ACCOUNT_NAME", $account->getLastName());
-    } elseif($account->getEmail()) {
-        define("ACCOUNT_NAME", $account->getEmail());
-    } else {
-        define("ACCOUNT_NAME", false);
+    if($account) {
+        if($account->getFirstName() && $account->getLastName()) {
+            define("ACCOUNT_NAME", $account->getFirstName() . " " . $account->getLastName());
+        } elseif($account->getFirstName()) {
+            define("ACCOUNT_NAME", $account->getFirstName());
+        } elseif($account->getLastName()) {
+            define("ACCOUNT_NAME", $account->getLastName());
+        } elseif($account->getEmail()) {
+            define("ACCOUNT_NAME", $account->getEmail());
+        } else {
+            define("ACCOUNT_NAME", false);
+        }
+        define("ACCOUNT_TYPE", $account->getType());
+        define("ACCOUNT_PICTURE", $account->getPicture());
     }
-    define("ACCOUNT_TYPE", $account->getType());
-    define("ACCOUNT_PICTURE", $account->getPicture());
 }
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
