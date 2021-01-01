@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0] - 2021-01-01
+
+### Added
+
+- Unique identifiers
+- Model structure improvement
+- Sign-in redirection
+
 ## [1.2.0] - 2020-12-26
 
 ### Added
