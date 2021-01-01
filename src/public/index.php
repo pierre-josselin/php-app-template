@@ -1,5 +1,5 @@
 <?php
-# PHP App Template 1.2.0
+# PHP App Template 2.0.0
 
 require_once("../models/Configuration.php");
 
