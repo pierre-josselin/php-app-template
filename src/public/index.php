@@ -141,7 +141,8 @@ define("ROUTES", array_merge([
     "/css/global.css" => "/views/static/css/global.php",
     "/js/global.js" => "/views/static/js/global.php",
     "/js/settings.js" => "/views/static/js/settings.php",
-    "/js/utils.js" => "/views/static/js/utils.php"
+    "/js/utils.js" => "/views/static/js/utils.php",
+    "/js/dashboard.js" => "/views/static/js/dashboard.php"
 ], Configuration::ROUTES));
 
 define("PATH", parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
