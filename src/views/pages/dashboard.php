@@ -12,7 +12,7 @@
                 <dt class="col-sm-3">Nombre d'utilisateurs</dt>
                 <dd class="col-sm-9"><?= count($accounts) ?></dd>
                 <dt class="col-sm-3">Nombre d'utilisateurs en ligne</dt>
-                <dd class="col-sm-9"><?= $activeSessionCount ?></dd>
+                <dd class="col-sm-9"><?= count($activeAccounts) ?></dd>
             </dl>
             <hr>
             <div class="table-responsive">
@@ -33,7 +33,11 @@
                             <tr>
                                 <td class="text-center">
                                     <?php if($account->getEnabled()): ?>
-                                        <i class="fas fa-check text-success"></i>
+                                        <?php if(in_array($account->getId(), $activeAccounts)): ?>
+                                            <i class="fas fa-check text-success"></i>
+                                        <?php else: ?>
+                                            <i class="fas fa-check"></i>
+                                        <?php endif; ?>
                                     <?php else: ?>
                                         <i class="fas fa-times text-danger"></i>
                                     <?php endif; ?>
